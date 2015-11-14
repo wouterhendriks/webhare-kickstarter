@@ -1,0 +1,19 @@
+[! Careful here, any subscript operators that should still be present in the
+   final library file must be double escaped: [[ (but not ]])
+
+do not add a newline between comment close and the <?wh tag !]<?wh
+LOADLIB "wh::witty.whlib";
+LOADLIB "module::publisher/siteapi.whlib";
+LOADLIB "module::publisher/webdesign.whlib";
+LOADLIB "module::system/database.whlib";
+LOADLIB "module::system/whfs.whlib";
+LOADLIB "module::nerdsandcompany/sites/defaults.whlib";
+
+PUBLIC OBJECTTYPE [designobjectname] EXTEND WebDesignBase
+<
+    UPDATE PUBLIC RECORD FUNCTION GetPageConfig()
+    {
+        RETURN [[ nchead := PTR PrintNerdsAndCompanyHead()
+               ];
+    }
+>;

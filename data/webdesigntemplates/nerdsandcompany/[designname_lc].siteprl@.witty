@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<siteprofile xmlns="http://www.webhare.net/xmlns/publisher/siteprofile"
+             xmlns:t="http://www.webhare.net/xmlns/tollium/screens"
+             xmlns:m="http://www.webhare.net/xmlns/system/moduledefinition"
+             xmlns:p="http://www.webhare.net/xmlns/publisher/components"
+             xmlns:w="http://www.webhare.net/xmlns/wrd/components">
+
+  <!-- RTD default settings -->
+  <apply>
+    <to type="file" filetype="http://www.webhare.net/xmlns/publisher/richdocumentfile" />
+    <richdocumenteditor>
+      <structuredefinition fullpath="rtd/rtd-structure.xml" />
+      <css fullpath="css/[designname_lc].scss" />
+      <limitinternallinks root="/" />
+    </richdocumenteditor>
+  </apply>
+
+  <!-- Global site settings -->
+  <apply>
+    <to type="all" />
+
+    <!-- Setup default webdesign -->
+    <webdesign designfolder="."
+               witty="templates/[designname_lc].witty"
+               library="lib/[designname_lc].whlib"
+               objectname="[designobjectname]"
+               basedependency="js/[designname_lc].js"
+               maxcontentwidth="960px">
+      <m:vmrights permissions="FULLDB" />
+    </webdesign>
+
+    <!-- Set site language -->
+    <sitelanguage lang="[defaultlanguage]" />
+
+    <!-- Republish all files upon every change -->
+    <republish folder="/" indexonly="false" recursive="true" />
+
+    <!-- Allow RTD documents -->
+    <allowfiletype typedef="http://www.webhare.net/xmlns/publisher/richdocumentfile" />
+
+    <enabledrafts />
+
+    <!-- Disable the legacy site settings -->
+    <disablelegacysitesettings notemplateprofile="true" />
+
+    <!-- Enable webpack -->
+    <webpackintegration xmlns="http://www.webhare.net/xmlns/webpack" />
+
+    <!-- disable keywords field -->
+    <baseproperties keywords="false" />
+
+    <!-- Enable Word conversion?
+    <mswordconversion languageattributes="false" relativefontbase="10">
+      <profile emptydocobjects="false">
+        <style mswordstyleid="1"/>
+        <style mswordstyleid="2"/>
+        <style />
+        <style toclevel="99" mswordcustomstyle="HTML Sourcecode" embedtype="rawhtml" />
+      </profile>
+    </mswordconversion>
+    -->
+
+    <!-- property 'name' on 'account' -->
+    <!--
+    <analytics xmlns="http://www.webhare.net/xmlns/socialite" type="universal" code="UA-XXXXXXX-X" />
+    -->
+
+    <!-- Default types -->
+    <denyfiletype typedef="*" />
+    <allowfiletype typedef="http://www.webhare.net/xmlns/publisher/imagefile" />
+    <allowfiletype typedef="http://www.webhare.net/xmlns/publisher/pdffile" />
+    <allowfiletype typedef="http://www.webhare.net/xmlns/publisher/externallink" />
+    <allowfiletype typedef="http://www.webhare.net/xmlns/publisher/internallink" />
+    <allowfiletype typedef="http://www.webhare.net/xmlns/publisher/contentlink" />
+    <allowfiletype typedef="http://www.webhare.net/xmlns/publisher/richdocumentfile" />
+
+  </apply>
+
+</siteprofile>

@@ -1,0 +1,14 @@
+{
+  "name": "dummy",
+  "version": "0.0.0",
+  "authors": [[],
+  "license": "unlicensed",
+  "private": true,
+  "ignore": [[
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

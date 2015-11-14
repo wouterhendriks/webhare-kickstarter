@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module xmlns="http://www.webhare.net/xmlns/system/moduledefinition">
+
+  <meta>
+    <version>0.1</version>
+    <description>xxdescriptionxx</description>
+    <author>Nerds &amp; Company</author>
+    <packaging download="true">
+      <dependency module="nerdsandcompany" />
+    </packaging>
+  </meta>
+
+  <publisher>
+    <webdesign name="nerdsandcompany" title="Blank NC webdesign" siteprofile="[designname_lc].siteprl" istemplate="true" path="data/webdesigntemplates/nerdsandcompany" />
+  </publisher>
+
+</module>
