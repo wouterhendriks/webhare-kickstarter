@@ -32,7 +32,11 @@ function createrepository()
   # go to the modules directory
   cd "$MODS_DIR"
 
-  #FIXME: Check for existing folder "$MODS_DIR/$foldername". If found, exit immediately.
+  #FIXME: Would be nice to do this in the title question
+  if [ -d "$foldername" ]; then
+    printf "## ERROR! Based on this title we would create this folder:\n\n- $MODS_DIR$foldername\n\nBut alas, it already exists so nothing was done. Please run again with another title. Exiting.\n\n"
+    exit 1
+  fi  
 
   # clone the base repo and save it under the new name
   git clone git@bitbucket.org:itmundi/webhare-projects-creator.git $foldername

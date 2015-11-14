@@ -20,32 +20,33 @@ RECORD args := ParseArguments(GetConsoleArguments(),
 IF (args.title = "" OR args.name = "")
     Abort('Usage: runscript setup_new_webdesign.whscr "Title" "Name"');
 
-
 STRING template := "wh_creator:nerdsandcompany";
 STRING module := args.name;
 STRING title := args.title;
 STRING name := args.name;
-STRING language := "nl";
 
-/*
- +DEFAULTLANGUAGE: 'nl' <language>
- +DESIGNNAME: 'mytestsite' // <name>
- +DESIGNNAME_LC: 'mytestsite' // <name>
- +DESIGNOBJECTNAME: 'mytestsiteDesign' "<name>Design"
- +DESIGNRESOURCEBASE: '$MODS_DIR/<template[0]>/<module>/webdesigns/<name>/'
- +MODULEROOT: '$MODS_DIR/<template[0]>/<module>''.
-*/
+// setup webdesign
 RECORD setup := SetupWebDesign(template, module, name
                               ,[ title := title
-                               , defaultlanguage := language
+                               , defaultlanguage := "nl"
                                ]);
 
+// create new site
 OBJECT newfolder := OpenWHFSRootObject()->CreateFolder([ name := args.title ]);
 OBJECT newsite := CreateSiteFromFolder(newfolder->id);
 
+// update site settings with site design
 OBJECT sitesettingstype := OpenWHFSType("http://www.webhare.net/xmlns/publisher/sitesettings");
 RECORD sitesettings := sitesettingstype->GetInstanceData(newsite->root);
 sitesettingstype->SetInstanceData(newsite->id, [ sitedesign := module || ":" || name ]);
+
+// try to find localhost:8001 webserver so we can assign this site
+INTEGER defaultoutputserverid := SELECT AS INTEGER id
+                                   FROM system.webservers
+                                  WHERE ToUpperCase(baseurl) = 'HTTP://LOCALHOST:8001/';
+
+IF (defaultoutputserverid > 0)
+    newsite->SetPrimaryOutput(defaultoutputserverid, "/" || GetSafeFileName(name) || "/");
 
 RECORD ARRAY errors := trans->CommitWork();
 
