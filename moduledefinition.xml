@@ -11,7 +11,7 @@
   </meta>
 
   <publisher>
-    <webdesign name="nerdsandcompany" title="Blank NC webdesign" siteprofile="[designname_lc].siteprl" istemplate="true" path="data/webdesigntemplates/nerdsandcompany" />
+    <webdesign name="nerdsandcompany" title="Blank NC webdesign" siteprofile="[designname_lc].siteprl" istemplate="true" path="data/webdesigntemplates/nerdsandcompany"></webdesign>
   </publisher>
 
 </module>

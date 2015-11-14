@@ -1,7 +1,7 @@
 printf "\n## This script will create a new site using the default template ##\n\n"
 
 # global variables
-DEBUG=false #FIXME: Make this a setting
+DEBUGMODE=false #FIXME: Make this a setting
 CREATE_SITE=true
 MODS_DIR="$(wh getdatadir)installedmodules/"
 
@@ -57,7 +57,7 @@ function runsetupscript()
 
   logstep "Creating webdesign in repository and a new site in the Publisher"
   
-  wh softreset # is needed because the script an initialized wh_creator module
+  wh softreset # is needed because the script expects an already initialized wh_creator module, would be nice if the WH script could take care of this
   wh run "$MODS_DIR$foldername/scripts/setup_new_webdesign.whscr" "$TITLE" "$NAME"
 
   printf "\n"
@@ -77,17 +77,20 @@ function cleanup()
 }
 
 # debug: use a test folder for the modules
-if $DEBUG; then
+if $DEBUGMODE; then
   MODS_DIR="${MODS_DIR}ncbasetests/"
 fi
 
-# collect variables
+# ask user for the title
 printf "Enter the title for your project. Please make sure this is a unique title, since we don't have proper error checking yet.\n\n"
-read -p "Title: " TITLE
+while read -p 'Title: ' TITLE && [[ -z "$TITLE" ]] ; do
+  printf "\nPlease enter something!\n\n"
+done
+
 printf "\n"
 
 # debug: add timestamp to title
-if $DEBUG; then
+if $DEBUGMODE; then
   TITLE=$TITLE$(date +"%Y%m%d%H%M%S")
 fi
 
