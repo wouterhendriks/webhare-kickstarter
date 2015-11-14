@@ -24,4 +24,4 @@ git clone git@bitbucket.org:itmundi/webhare-projects-creator.git nc_base
 
 ```
 
-- And done!
+A new website should be created now. Refer to the output on how to move on.
