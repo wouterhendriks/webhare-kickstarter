@@ -45,10 +45,16 @@ function createrepository()
   printf "\n"
 }
 
-function replaceplaceholders()
+function updatefilecontents()
 {
-  logstep "Replacing placeholder texts with project's title"
+  local foldername="$@"
+
+  logstep "Updating file contents"
+
+  cd "$MODS_DIR$foldername"
+
   #perl -pi -e "s/xxdescriptionxx/$TITLE./g" moduledefinition.xml
+  sed -i '' '/<webdesign /d' moduledefinition.xml
 }
 
 function runsetupscript()
@@ -99,7 +105,7 @@ NAME=$(converttofoldername ${TITLE})
 
 # perform functions
 createrepository $NAME
-replaceplaceholders
+updatefilecontents $NAME
 if $CREATE_SITE; then
   runsetupscript $NAME
 fi
