@@ -53,7 +53,7 @@ function updatefilecontents()
 
   cd "$MODS_DIR$foldername"
 
-  #perl -pi -e "s/xxdescriptionxx/$TITLE./g" moduledefinition.xml
+  sed -i '' "s/xxdescriptionxx/$TITLE/g" moduledefinition.xml
   sed -i '' '/<webdesign /d' moduledefinition.xml
 }
 
