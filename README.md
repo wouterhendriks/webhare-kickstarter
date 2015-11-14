@@ -4,13 +4,12 @@ With this module, you can kickstart your new website by running a Bash script th
 
 ## To create a website
 
-* If you don't have this repo yet, create it as 'nc_base':
+* If you don't have this repo yet, create it as 'wh_creator':
 
 ```
 #!bash
 
-cd "$(wh getdatadir)installedmodules/"
-git clone git@bitbucket.org:itmundi/webhare-projects-creator.git nc_base
+git clone git@bitbucket.org:itmundi/webhare-projects-creator.git "$(wh getdatadir)installedmodules/wh_creator"
 
 ```
 
@@ -20,7 +19,7 @@ git clone git@bitbucket.org:itmundi/webhare-projects-creator.git nc_base
 ```
 #!bash
 
-~/mods/nc_base/scripts/create_site.sh
+$(wh getmoduledir wh_creator)scripts/create_site.sh
 
 ```
 

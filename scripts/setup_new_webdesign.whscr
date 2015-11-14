@@ -21,7 +21,7 @@ IF (args.title = "" OR args.name = "")
     Abort('Usage: runscript setup_new_webdesign.whscr "Title" "Name"');
 
 
-STRING template := "nc_base:nerdsandcompany";
+STRING template := "wh_creator:nerdsandcompany";
 STRING module := args.name;
 STRING title := args.title;
 STRING name := args.name;

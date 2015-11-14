@@ -1,7 +1,7 @@
 printf "\n## This script will create a new site using the default template ##\n\n"
 
 # global variables
-DEBUG=false
+DEBUG=false #FIXME: Make this a setting
 CREATE_SITE=true
 MODS_DIR="$(wh getdatadir)installedmodules/"
 
@@ -34,11 +34,10 @@ function createrepository()
 
   #FIXME: Check for existing folder "$MODS_DIR/$foldername". If found, exit immediately.
 
-  # clone the base repo
-  #git clone git@bitbucket.org:itmundi/nerds-company-webhare-website-template.git $foldername
-  cp -r /Users/wouter/projects/webhare/whtree/var/installedmodules/nc_base "$MODS_DIR$foldername"
+  # clone the base repo and save it under the new name
+  git clone git@bitbucket.org:itmundi/webhare-projects-creator.git $foldername
 
-  # delete the .git folder, initialize a new Git repo
+  # delete the .git folder and initialize a new Git repo
   cd "$MODS_DIR$foldername"
   rm -rf .git/
   git init
@@ -54,10 +53,12 @@ function replaceplaceholders()
 
 function runsetupscript()
 {
+  local foldername="$@"
+
   logstep "Creating webdesign in repository and a new site in the Publisher"
   
-  wh run modulescript::nc_base/setup_new_webdesign.whscr "$TITLE" "$NAME"
-  wh softreset
+  wh softreset # is needed because the script an initialized wh_creator module
+  wh run "$MODS_DIR$foldername/scripts/setup_new_webdesign.whscr" "$TITLE" "$NAME"
 
   printf "\n"
 }
@@ -97,9 +98,9 @@ NAME=$(converttofoldername ${TITLE})
 createrepository $NAME
 replaceplaceholders
 if $CREATE_SITE; then
-  runsetupscript
+  runsetupscript $NAME
 fi
-#cleanup $NAME
+cleanup $NAME
 
 # print recap
 printf "## ----------------------- Recap ----------------------- ##\n\n"
@@ -109,11 +110,3 @@ printf "Folder/module name: '$NAME'\n"
 printf "Installed into folder: $MODS_DIR$NAME/\n"
 
 printf "\n## ----------------------- End of recap ---------------- ##\n\n"
-
-
-#printf "$out\n\n";
-
-
-#printf "Please enter the name of your project\n"
-#read -p "IP [31.7.4.77]: " IP
-#IP=${IP:-31.7.4.77}
