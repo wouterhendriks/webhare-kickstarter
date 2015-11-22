@@ -11,9 +11,9 @@ LOADLIB "module::nerdsandcompany/sites/defaults.whlib";
 
 PUBLIC OBJECTTYPE [designobjectname] EXTEND WebDesignBase
 <
-    UPDATE PUBLIC RECORD FUNCTION GetPageConfig()
-    {
-        RETURN [[ nchead := PTR PrintNerdsAndCompanyHead()
-               ];
-    }
+  UPDATE PUBLIC RECORD FUNCTION GetPageConfig()
+  {
+    RETURN [[ nchead := PTR PrintNerdsAndCompanyHead()
+           ];
+  }
 >;

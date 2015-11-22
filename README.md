@@ -4,7 +4,7 @@ With this module, you can kickstart your new website by running a Bash script th
 
 ## To create a website
 
-* If you don't have this repo yet, clone it:
+* If you don't have this repo yet, clone it as 'wh_creator':
 
 ```
 #!bash

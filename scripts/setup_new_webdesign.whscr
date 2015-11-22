@@ -17,8 +17,10 @@ RECORD args := ParseArguments(GetConsoleArguments(),
                               [[ name := "title", type := "param" ]
                               ,[ name := "name", type := "param" ]
                               ]);
-IF (args.title = "" OR args.name = "")
-    Abort('Usage: runscript setup_new_webdesign.whscr "Title" "Name"');
+
+IF (args.title = "" OR args.name = "") {
+  Abort('Usage: runscript setup_new_webdesign.whscr "Title" "Name"');
+}
 
 STRING template := "wh_creator:nerdsandcompany";
 STRING module := args.name;
@@ -45,13 +47,15 @@ INTEGER defaultoutputserverid := SELECT AS INTEGER id
                                    FROM system.webservers
                                   WHERE ToUpperCase(baseurl) = 'HTTP://LOCALHOST:8001/';
 
-IF (defaultoutputserverid > 0)
-    newsite->SetPrimaryOutput(defaultoutputserverid, "/" || GetSafeFileName(name) || "/");
+IF (defaultoutputserverid > 0) {
+  newsite->SetPrimaryOutput(defaultoutputserverid, "/" || GetSafeFileName(name) || "/");
+}
 
 RECORD ARRAY errors := trans->CommitWork();
 
-IF (Length(errors) > 0) 
-    Abort("Errors in setup_new_webdesign.whscr: " || AnyToString(errors,'tree'));
+IF (Length(errors) > 0) {
+  Abort("Errors in setup_new_webdesign.whscr: " || AnyToString(errors,'tree'));
+}
 
 Print("Module installed into folder: " || setup.moduleroot || "\n");
 Print("Web design installed into folder: " || setup.designresourcebase || "\n");
