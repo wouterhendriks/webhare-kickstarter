@@ -7,7 +7,7 @@ printf "\n## This script will create a new site using the default template ##\n\
 
 # global variables
 TEMPLATETAG=$1
-DEBUGMODE=false #FIXME: Make this a param?
+DEBUGMODE=true #FIXME: Make this a param?; assumes /.../installedmodules/ncbasetests/ exists
 CREATE_SITE=true
 MODS_DIR="$(wh getdatadir)installedmodules/"
 
@@ -45,7 +45,11 @@ function createrepository()
   fi
 
   # clone the base repo and save it under the new name
-  git clone git@bitbucket.org:itmundi/webhare-projects-creator.git $foldername
+  if $DEBUGMODE; then
+    cp -r "$(wh getmoduledir wh_creator)" $foldername
+  else
+    git clone https://github.com/WouterHendriks/wh-creator.git $foldername
+  fi
 
   # delete the .git folder and initialize a new Git repo
   cd "$MODS_DIR$foldername"
