@@ -16,12 +16,13 @@ trans->BeginWork();
 RECORD args := ParseArguments(GetConsoleArguments(),
                               [[ name := "title", type := "param" ]
                               ,[ name := "name", type := "param" ]
+                              ,[ name := "templatetag", type := "param" ]
                               ]);
 
-IF (args.title = "" OR args.name = "")
-  Abort('Usage: runscript setup_new_webdesign.whscr "Title" "Name"');
+IF (args.title = "" OR args.name = "" OR args.templatetag = "")
+  Abort('Usage: runscript setup_new_webdesign.whscr "Title" "Name" "Template tag"');
 
-STRING template := "wh_creator:nerdsandcompany";
+STRING template := args.templatetag;
 STRING module := args.name;
 STRING title := args.title;
 STRING name := args.name;

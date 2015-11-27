@@ -1,7 +1,13 @@
+if [[ $# -eq 0 ]] ; then
+    printf "\nMissing parameter: 'template tag', for example: wh_creator:nerdsandcompany\n\n"
+    exit 1
+fi
+
 printf "\n## This script will create a new site using the default template ##\n\n"
 
 # global variables
-DEBUGMODE=false #FIXME: Make this a setting
+TEMPLATETAG=$1
+DEBUGMODE=false #FIXME: Make this a param?
 CREATE_SITE=true
 MODS_DIR="$(wh getdatadir)installedmodules/"
 
@@ -11,7 +17,7 @@ function logstep()
   printf "## - $@ ##\n\n"
 }
 
-function converttofoldername() 
+function converttofoldername()
 {
   local str="$@"
 
@@ -36,7 +42,7 @@ function createrepository()
   if [ -d "$foldername" ]; then
     printf "## ERROR! Based on this title we would create this folder:\n\n- $MODS_DIR$foldername\n\nBut alas, it already exists so nothing was done. Please run again with another title. Exiting.\n\n"
     exit 1
-  fi  
+  fi
 
   # clone the base repo and save it under the new name
   git clone git@bitbucket.org:itmundi/webhare-projects-creator.git $foldername
@@ -66,9 +72,9 @@ function runsetupscript()
   local foldername="$@"
 
   logstep "Creating webdesign in repository and a new site in the Publisher"
-  
+
   wh softreset # is needed because the script expects an already initialized wh_creator module, would be nice if the WH script could take care of this
-  wh run "$MODS_DIR$foldername/scripts/setup_new_webdesign.whscr" "$TITLE" "$NAME"
+  wh run "$MODS_DIR$foldername/scripts/setup_new_webdesign.whscr" "$TITLE" "$NAME" "$TEMPLATETAG"
 
   printf "\n"
 }
