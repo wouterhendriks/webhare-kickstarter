@@ -1,3 +1,5 @@
+#!/bin/bash
+
 if [[ $# -eq 0 ]] ; then
     printf "\nMissing parameter: 'template tag', for example: wh_creator:nerdsandcompany\n\n"
     exit 1
@@ -7,7 +9,7 @@ printf "\n## This script will create a new site using the default template ##\n\
 
 # global variables
 TEMPLATETAG=$1
-DEBUGMODE=true #FIXME: Make this a param?; assumes /.../installedmodules/ncbasetests/ exists
+DEBUGMODE=false #FIXME: Make this a param?; assumes /.../installedmodules/ncbasetests/ exists
 CREATE_SITE=true
 MODS_DIR="$(wh getdatadir)installedmodules/"
 
