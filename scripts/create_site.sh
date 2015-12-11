@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 if [[ $# -eq 0 ]] ; then
     printf "\nMissing parameter: 'template tag', for example: wh_creator:nerdsandcompany\n\n"
