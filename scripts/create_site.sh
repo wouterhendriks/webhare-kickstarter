@@ -21,16 +21,7 @@ function logstep()
 
 function converttofoldername()
 {
-  local str="$@"
-
-  local output
-
-  output=$(echo $str | tr '[:upper:]' '[:lower:]')
-  output=$(echo $output | tr ' ' '_')
-  output=$(echo $output | tr '.' '_')
-  output=$(echo $output | tr '-' '_')
-
-  echo $output
+  echo "$@" | tr '[:upper:][:punct:]' '[:lower:]-'
 }
 
 function createrepository()
@@ -120,7 +111,7 @@ if $DEBUGMODE; then
 fi
 
 # convert title to friendly folder name
-NAME=$(converttofoldername ${TITLE})
+NAME=$(converttofoldername "${TITLE}")
 
 # perform functions
 createrepository $NAME
