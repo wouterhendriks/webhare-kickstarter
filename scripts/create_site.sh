@@ -99,7 +99,7 @@ git clone <URL-to-Git-repository> "\$(wh getdatadir)installedmodules/$NAME"
 
 ## To satisfy the module dependencies:
 - whcd $NAME/webdesigns/$NAME/
-- if whcd is unavailable, try cd ~/projects/webhare/whtree/var/installedmodules/$NAME/webdesigns/$NAME/
+- if whcd is unavailable, try cd "\$(wh getmoduledir $NAME)webdesigns/$NAME/"
 - wh noderun npm install
 - wh noderun bower install
 EOF
