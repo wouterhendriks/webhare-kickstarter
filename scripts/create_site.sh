@@ -21,7 +21,7 @@ function logstep()
 
 function converttofoldername()
 {
-  echo "$@" | tr '[:upper:][:punct:]' '[:lower:]-'
+  echo "$@" | tr '[:upper:][:punct:] ' '[:lower:]_'
 }
 
 function createrepository()
