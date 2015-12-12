@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 if [[ $# -eq 0 ]] ; then
     printf "\nMissing parameter: 'template tag', for example: wh_creator:nerdsandcompany\n\n"
@@ -57,6 +57,7 @@ function createrepository()
   cd "$MODS_DIR$foldername"
   rm -rf .git/
   git init
+  git commit --allow-empty -m 'Initial commit.'
 
   printf "\n"
 }
