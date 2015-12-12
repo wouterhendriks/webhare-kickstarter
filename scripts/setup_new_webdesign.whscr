@@ -55,5 +55,19 @@ RECORD ARRAY errors := trans->CommitWork();
 IF (Length(errors) > 0)
   Abort("Errors in setup_new_webdesign.whscr: " || AnyToString(errors,'tree'));
 
-Print("Module installed into folder: " || setup.moduleroot || "\n");
-Print("Web design installed into folder: " || setup.designresourcebase || "\n");
+Print("\n## ----------------------- Result ----------------------- ##\n\n"
+   || "Title:\n" || title || "\n"
+   || "\n"
+   || "Module name (converted from title):\n" || name || "\n"
+   || "\n"
+   || "Assuming a default install, direct URL to the site in the Publisher:\n"
+   || "http://localhost:8000/?app=publisher(" || newsite->name || ")\n"
+   || "\n"
+   || "Output URL:\n"
+   || newsite->webroot || "\n"
+   || "\n"
+   || "You can go to the created module using the following command:\n"
+   || "whcd " || name || "\n"
+   || "\n"
+   || "Or to the newly created webdesign folder:\n"
+   || "whcd " || name || "/webdesigns/" || name || "\n");

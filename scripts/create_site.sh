@@ -113,8 +113,6 @@ function cleanup()
 {
   local foldername="$@"
 
-  logstep "Cleaning up"
-
   cd "$MODS_DIR$foldername"
 
   # remove obsolete files and folders
@@ -150,12 +148,3 @@ if $CREATE_SITE; then
   runsetupscript $NAME
 fi
 cleanup $NAME
-
-# print recap
-printf "## ----------------------- Recap ----------------------- ##\n\n"
-
-printf "Title: '$TITLE'\n"
-printf "Folder/module name: '$NAME'\n"
-printf "Installed into folder: $MODS_DIR$NAME/\n"
-
-printf "\n## ----------------------- End of recap ---------------- ##\n\n"
