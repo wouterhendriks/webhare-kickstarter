@@ -27,6 +27,8 @@ function converttofoldername()
 
   output=$(echo $str | tr '[:upper:]' '[:lower:]')
   output=$(echo $output | tr ' ' '_')
+  output=$(echo $output | tr '.' '_')
+  output=$(echo $output | tr '-' '_')
 
   echo $output
 }
