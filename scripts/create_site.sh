@@ -84,10 +84,7 @@ function runsetupscript()
 
 function replacereadme()
 {
-  local foldername="$@"
-
-  rm README.md
-
+  # generate text
   read -d '' readmetext <<EOF
 # $TITLE
 
@@ -107,6 +104,8 @@ git clone <URL-to-Git-repository> "\$(wh getdatadir)installedmodules/$NAME"
 - wh noderun bower install
 EOF
 
+  # remove old file and add new one
+  rm README.md
   echo "$readmetext" >> README.md
 }
 
