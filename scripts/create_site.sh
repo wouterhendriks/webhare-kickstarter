@@ -52,6 +52,9 @@ function createrepository()
   git init
   git commit --allow-empty -m 'Initial commit.'
 
+  # remove and add a new README.MD
+  replacereadme
+
   printf "\n"
 }
 
@@ -77,6 +80,34 @@ function runsetupscript()
   wh run "$MODS_DIR$foldername/scripts/setup_new_webdesign.whscr" "$TITLE" "$NAME" "$TEMPLATETAG"
 
   printf "\n"
+}
+
+function replacereadme()
+{
+  local foldername="$@"
+
+  rm README.md
+
+  read -d '' readmetext <<EOF
+# $TITLE
+
+## URLs
+Your test/live URLs here
+
+## Backend
+Your backend URLs here
+
+## Installation
+git clone <URL-to-Git-repository> "\$(wh getdatadir)installedmodules/$NAME"
+
+## To satisfy the module dependencies:
+- whcd $NAME/webdesigns/$NAME/
+- if whcd is unavailable, try cd ~/projects/webhare/whtree/var/installedmodules/$NAME/webdesigns/$NAME/
+- wh noderun npm install
+- wh noderun bower install
+EOF
+
+  echo "$readmetext" >> README.md
 }
 
 function cleanup()
