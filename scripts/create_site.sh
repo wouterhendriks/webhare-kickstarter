@@ -1,5 +1,26 @@
 #!/usr/bin/env bash
 
+# ==============================================================================
+#/ Webhare -- Website Creator
+# ------------------------------------------------------------------------------
+#/ This script will will generate a basic module and site for Webhare
+#/
+#/ To create a site, run as follows:
+#/
+#/     $(wh getmoduledir wh_creator)scripts/create_site.sh [template_name]
+#/
+#/ Where "template_name" specifies a template. To use the default template run:
+#/
+#/     $(wh getmoduledir wh_creator)scripts/create_site.sh 'publisher:blank'
+#/
+#/ To run with the template specific for Nerds & Company, run:
+#/
+#/     $(wh getmoduledir wh_creator)scripts/create_site.sh 'wh_creator:nerdsandcompany'
+#/
+#/ The script will ask for a project name.
+#/
+## ==============================================================================
+
 set -o nounset # exit on use of an uninitialised variable, same as -u
 set -o errexit # exit on all and any errors, same as -e
 
@@ -17,6 +38,15 @@ declare TITLE
 # ==============================================================================
 # functions
 # ------------------------------------------------------------------------------
+fullUsage() {
+  #/ Displays all lines in main script that start with '#/'
+  grep '^#/' <"$0" | cut -c4-
+}
+
+shortUsage() {
+  echo -e 'Usage:\n\t$(wh getmoduledir wh_creator)scripts/create_site.sh' "$*\n"
+}
+
 function printError()
 {
   echo -e "\n !     ERROR: $*\n" >&2
@@ -130,7 +160,8 @@ function checkConstraints()
 {
   if [[ $(isInstalled 'wh') -eq 0 ]] ; then
     if [[ $# -eq 0 ]] ; then
-        printError 'Missing parameter: "template tag", for example: wh_creator:nerdsandcompany'
+        printError 'Missing parameter: "template name", for example: wh_creator:nerdsandcompany'
+        shortUsage '[template_name]'
         exit 65
     fi
   else
@@ -138,6 +169,10 @@ function checkConstraints()
     exit 66
   fi
 
+    if [[ "$1" == '--help' ]] || [[ "$1" == '-h' ]]; then
+      fullUsage
+      exit 0
+    fi
 }
 
 function setGlobalVariables()
@@ -191,9 +226,8 @@ function setFolderNameFromTitle()
 # ==============================================================================
 #
 # ------------------------------------------------------------------------------
+checkConstraints $@
 printf "\n## This script will create a new site using the default template ##\n\n"
-
-checkConstraints
 setGlobalVariables $@
 askForTitle
 setFolderNameFromTitle
