@@ -128,7 +128,7 @@ function cleanup()
 
 function checkConstraints()
 {
-  if [[ $(isInstalled 'wh') ]] ; then
+  if [[ $(isInstalled 'wh') -eq 0 ]] ; then
     if [[ $# -eq 0 ]] ; then
         printError 'Missing parameter: "template tag", for example: wh_creator:nerdsandcompany'
         exit 65
