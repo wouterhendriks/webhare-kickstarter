@@ -17,6 +17,15 @@ declare TITLE
 # ==============================================================================
 # functions
 # ------------------------------------------------------------------------------
+function printError()
+{
+  echo -e "\n !     ERROR: $*\n" >&2
+}
+
+function isInstalled() {
+    return $(command -v "${1}" >/dev/null 2>&1);
+}
+
 function logstep()
 {
   printf "## - $@ ##\n\n"
@@ -35,12 +44,6 @@ function createrepository()
 
   # go to the modules directory
   cd "$MODS_DIR"
-
-  #FIXME: Would be nice to do this in the title question
-  if [ -d "$foldername" ]; then
-    printf "## ERROR! Based on this title we would create this folder:\n\n- $MODS_DIR$foldername\n\nBut alas, it already exists so nothing was done. Please run again with another title. Exiting.\n\n"
-    exit 1
-  fi
 
   # clone the base repo and save it under the new name
   if $DEBUGMODE; then
@@ -125,10 +128,16 @@ function cleanup()
 
 function checkConstraints()
 {
-  if [[ $# -eq 0 ]] ; then
-      printf "\nMissing parameter: 'template tag', for example: wh_creator:nerdsandcompany\n\n"
-      exit 1
+  if [[ $(isInstalled 'wh') ]] ; then
+    if [[ $# -eq 0 ]] ; then
+        printError 'Missing parameter: "template tag", for example: wh_creator:nerdsandcompany'
+        exit 65
+    fi
+  else
+    printError 'Webhare binary is not installed (or or not properly aliased)'
+    exit 66
   fi
+
 }
 
 function setGlobalVariables()
@@ -144,15 +153,27 @@ function setGlobalVariables()
   fi
 }
 
-function askForTitle()
+function getTitleFromUser()
 {
-  printf "Enter the title for your project. Please make sure this is a unique title, since we don't have proper error checking yet.\n\n"
-
   while read -p 'Title: ' TITLE && [[ -z "$TITLE" ]] ; do
     printf "\nPlease enter something!\n\n"
   done
 
   printf "\n"
+
+  if [ -d "$MODS_DIR$NAME" ]; then
+    echo 'A directory for given title already exists. Please try another title.'
+    TITLE=''
+    getTitleFromUser
+  fi
+
+}
+
+function askForTitle()
+{
+  printf "Enter the title for your project. Please make sure this is a unique title, since we don't have proper error checking yet.\n\n"
+
+  getTitleFromUser
 
   if $DEBUGMODE; then
     # debug: add timestamp to title
