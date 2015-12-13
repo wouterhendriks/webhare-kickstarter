@@ -196,12 +196,13 @@ function getTitleFromUser()
 
   printf "\n"
 
+  setFolderNameFromTitle
+
   if [ -d "$MODS_DIR$NAME" ]; then
     echo 'A directory for given title already exists. Please try another title.'
     TITLE=''
     getTitleFromUser
   fi
-
 }
 
 function askForTitle()
@@ -230,7 +231,6 @@ checkConstraints $@
 printf "\n## This script will create a new site using the default template ##\n\n"
 setGlobalVariables $@
 askForTitle
-setFolderNameFromTitle
 createrepository $NAME
 updatefilecontents $NAME
 if $CREATE_SITE; then
