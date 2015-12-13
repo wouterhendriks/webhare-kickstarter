@@ -4,6 +4,17 @@ set -o nounset # exit on use of an uninitialised variable, same as -u
 set -o errexit # exit on all and any errors, same as -e
 
 # ==============================================================================
+# global variables
+# ------------------------------------------------------------------------------
+declare CREATE_SITE
+declare DEBUGMODE
+declare MODS_DIR
+declare NAME
+declare TEMPLATETAG
+declare TITLE
+# ==============================================================================
+
+# ==============================================================================
 # functions
 # ------------------------------------------------------------------------------
 function logstep()
@@ -111,50 +122,65 @@ function cleanup()
   rm -rf scripts/
   rm -rf data/
 }
+
+function checkConstraints()
+{
+  if [[ $# -eq 0 ]] ; then
+      printf "\nMissing parameter: 'template tag', for example: wh_creator:nerdsandcompany\n\n"
+      exit 1
+  fi
+}
+
+function setGlobalVariables()
+{
+  TEMPLATETAG=$1
+  DEBUGMODE=false #FIXME: Make this a param?; assumes /.../installedmodules/ncbasetests/ exists
+  CREATE_SITE=true
+  MODS_DIR="$(wh getdatadir)installedmodules/"
+
+  # debug: use a test folder for the modules
+  if $DEBUGMODE; then
+    MODS_DIR="${MODS_DIR}ncbasetests/"
+  fi
+}
+
+function askForTitle()
+{
+  printf "Enter the title for your project. Please make sure this is a unique title, since we don't have proper error checking yet.\n\n"
+
+  while read -p 'Title: ' TITLE && [[ -z "$TITLE" ]] ; do
+    printf "\nPlease enter something!\n\n"
+  done
+
+  printf "\n"
+
+  if $DEBUGMODE; then
+    # debug: add timestamp to title
+    TITLE=$TITLE$(date +"%Y%m%d%H%M%S")
+  fi
+}
+
+function setFolderNameFromTitle()
+{
+  NAME=$(converttofoldername "${TITLE}")
+}
 # ==============================================================================
 
 
 # ==============================================================================
 #
 # ------------------------------------------------------------------------------
-if [[ $# -eq 0 ]] ; then
-    printf "\nMissing parameter: 'template tag', for example: wh_creator:nerdsandcompany\n\n"
-    exit 1
-fi
-
 printf "\n## This script will create a new site using the default template ##\n\n"
 
-# global variables
-TEMPLATETAG=$1
-DEBUGMODE=false #FIXME: Make this a param?; assumes /.../installedmodules/ncbasetests/ exists
-CREATE_SITE=true
-MODS_DIR="$(wh getdatadir)installedmodules/"
-
-# debug: use a test folder for the modules
-if $DEBUGMODE; then
-  MODS_DIR="${MODS_DIR}ncbasetests/"
-fi
-
-# ask user for the title
-printf "Enter the title for your project. Please make sure this is a unique title, since we don't have proper error checking yet.\n\n"
-while read -p 'Title: ' TITLE && [[ -z "$TITLE" ]] ; do
-  printf "\nPlease enter something!\n\n"
-done
-
-printf "\n"
-
-# debug: add timestamp to title
-if $DEBUGMODE; then
-  TITLE=$TITLE$(date +"%Y%m%d%H%M%S")
-fi
-
-# convert title to friendly folder name
-NAME=$(converttofoldername "${TITLE}")
-
-# perform functions
+checkConstraints
+setGlobalVariables $@
+askForTitle
+setFolderNameFromTitle
 createrepository $NAME
 updatefilecontents $NAME
 if $CREATE_SITE; then
   runsetupscript $NAME
 fi
 cleanup $NAME
+
+#EOF
