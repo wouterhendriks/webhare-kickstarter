@@ -2,7 +2,7 @@
 
 # ==============================================================================
 #/ Webhare -- Website Creator
-# ------------------------------------------------------------------------------
+#/ ------------------------------------------------------------------------------
 #/ This script will will generate a basic module and site for Webhare
 #/
 #/ To create a site, run as follows:
@@ -19,7 +19,15 @@
 #/
 #/ The script will ask for a project name.
 #/
-## ==============================================================================
+#/ ------------------------------------------------------------------------------
+#/ The following ExitCodes are used:
+#/
+#/ 1 or 64  : General Error
+#/
+#/ 65 : Not enough parameters given
+#/ 66 : The `wh` command is not available
+#/ 67 : Webhare is not running
+# ==============================================================================
 
 set -o nounset # exit on use of an uninitialised variable, same as -u
 set -o errexit # exit on all and any errors, same as -e
@@ -30,9 +38,11 @@ set -o errexit # exit on all and any errors, same as -e
 declare CREATE_SITE
 declare DEBUGMODE
 declare MODS_DIR
-declare NAME
+declare FOLDER_NAME
 declare TEMPLATETAG
 declare TITLE
+
+readonly SOURCE_REPOSITORY='https://github.com/WouterHendriks/wh-creator.git'
 # ==============================================================================
 
 # ==============================================================================
@@ -52,13 +62,18 @@ function printError()
   echo -e "\n !     ERROR: $*\n" >&2
 }
 
-function isInstalled() {
-    return $(command -v "${1}" >/dev/null 2>&1);
+function printTopic()
+{
+    echo -e "\n=====> $*"
 }
 
-function logstep()
+function printStatus()
 {
-  printf "## - $@ ##\n\n"
+    echo "-----> $*"
+}
+
+function isInstalled() {
+    return $(command -v "${1}" >/dev/null 2>&1);
 }
 
 function converttofoldername()
@@ -66,63 +81,78 @@ function converttofoldername()
   echo "$@" | tr '[:upper:][:punct:] ' '[:lower:]_'
 }
 
+function cloneRepository()
+{
+  local sourceRepository="$1"
+  local projectDirectory="$2"
+
+  printTopic "Cloning source repository"
+  if $DEBUGMODE; then
+    printStatus "Copying from '$(wh getmoduledir wh_creator)' to '${projectDirectory}'"
+    cp -r "$(wh getmoduledir wh_creator)" "${projectDirectory}"
+  else
+     git clone "$sourceRepository" "${projectDirectory}"
+  fi
+}
+
+function cleanRepository()
+{
+ local projectDirectory="$1"
+
+  printTopic 'Cleaning up the newly created repository'
+  printStatus 'Deleting old .git folder'
+  rm -rf "${projectDirectory}/.git/"
+  printStatus 'Navigating to the modules directory'
+  pushd "${projectDirectory}" > /dev/null
+  printStatus 'Initializing a new Git repository'
+  git init && git commit --allow-empty -m 'Initial commit.'
+  popd
+}
+
 function createrepository()
 {
-  local foldername="$@"
+ local projectDirectory="$1"
+ local projectTitle="$2"
 
-  logstep "Creating folder and initializing new Git repository"
-
-  # go to the modules directory
-  cd "$MODS_DIR"
-
-  # clone the base repo and save it under the new name
-  if $DEBUGMODE; then
-    cp -r "$(wh getmoduledir wh_creator)" $foldername
-  else
-    git clone https://github.com/WouterHendriks/wh-creator.git $foldername
-  fi
-
-  # delete the .git folder and initialize a new Git repo
-  cd "$MODS_DIR$foldername"
-  rm -rf .git/
-  git init
-  git commit --allow-empty -m 'Initial commit.'
-
-  # remove and add a new README.MD
-  replacereadme
-
-  printf "\n"
+  cloneRepository "${SOURCE_REPOSITORY}" "${projectDirectory}"
+  cleanRepository "${projectDirectory}"
+  replacereadme "${projectDirectory}" "${projectTitle}"
 }
 
 function updatefilecontents()
 {
-  local foldername="$@"
+  projectDirectory="$1"
+  projectTitle="$2"
 
-  logstep "Updating file contents"
+  printTopic 'Updating file contents'
 
-  cd "$MODS_DIR$foldername"
-
-  sed -i '' "s/xxdescriptionxx/$TITLE/g" moduledefinition.xml
-  sed -i '' '/<webdesign /d' moduledefinition.xml
+  sed -i '' "s/xxdescriptionxx/${projectTitle}/g" "${projectDirectory}/moduledefinition.xml"
+  sed -i '' '/<webdesign /d' "${projectDirectory}/moduledefinition.xml"
 }
 
 function runsetupscript()
 {
-  local foldername="$@"
+  projectDirectory="$1"
+  projectTitle="$2"
 
-  logstep "Creating webdesign in repository and a new site in the Publisher"
+  printTopic 'Creating webdesign in repository and a new site in the Publisher'
 
+  printStatus 'Restarting Webhare'
   wh softreset # is needed because the script expects an already initialized wh_creator module, would be nice if the WH script could take care of this
-  wh run "$MODS_DIR$foldername/scripts/setup_new_webdesign.whscr" "$TITLE" "$NAME" "$TEMPLATETAG"
 
-  printf "\n"
+  printStatus 'Asking Webhare to run the webdesign script'
+  wh run "${projectDirectory}/scripts/setup_new_webdesign.whscr" "${projectTitle}" "$FOLDER_NAME" "$TEMPLATETAG"
 }
 
 function replacereadme()
 {
-  # generate text
-  read -d '' readmetext <<EOF
-# $TITLE
+  projectDirectory="$1"
+  projectTitle="$2"
+
+  printStatus 'Replacing README contents'
+
+  cat <<EOF > "${projectDirectory}/README.md"
+# ${projectTitle}
 
 ## URLs
 Your test/live URLs here
@@ -131,53 +161,48 @@ Your test/live URLs here
 Your backend URLs here
 
 ## Installation
-git clone <URL-to-Git-repository> "\$(wh getdatadir)installedmodules/$NAME"
+git clone <URL-to-Git-repository> "\$(wh getdatadir)installedmodules/${FOLDER_NAME}"
 
 ## To satisfy the module dependencies:
-- whcd $NAME/webdesigns/$NAME/
-- if whcd is unavailable, try cd "\$(wh getmoduledir $NAME)webdesigns/$NAME/"
+- whcd ${FOLDER_NAME}/webdesigns/${FOLDER_NAME}/
+- if whcd is unavailable, try cd "\$(wh getmoduledir ${FOLDER_NAME})webdesigns/${FOLDER_NAME}/"
 - wh noderun npm install
 - wh noderun bower install
 EOF
-
-  # remove old file and add new one
-  rm README.md
-  echo "$readmetext" >> README.md
 }
 
 function cleanup()
 {
-  local foldername="$@"
+ local projectDirectory="$1"
 
-  cd "$MODS_DIR$foldername"
+  printTopic 'Cleaning up'
 
-  # remove obsolete files and folders
-  rm -rf scripts/
-  rm -rf data/
+  printStatus 'Removing obsolete files and folders'
+  rm -rf "${projectDirectory}/scripts/"
+  rm -rf "${projectDirectory}/data/"
 }
 
 function checkConstraints()
 {
-  if [[ $(isInstalled 'wh') -eq 0 ]] ; then
-    if [[ $# -eq 0 ]] ; then
-        printError 'Missing parameter: "template name", for example: wh_creator:nerdsandcompany'
-        shortUsage '[template_name]'
-        exit 65
-    fi
-  else
+  if [[ $# -eq 0 ]] ; then
+    printError 'Missing parameter: "template name", for example: wh_creator:nerdsandcompany'
+    shortUsage '[template_name]'
+    exit 65
+  elif [[ "$1" == '--help' ]] || [[ "$1" == '-h' ]]; then
+    fullUsage
+    exit 0
+  elif [[ $(isInstalled 'wh') -ne 0 ]] ; then
     printError 'Webhare binary is not installed (or or not properly aliased)'
     exit 66
+  elif [[ "$(wh isrunning)" -ne 0 ]];then
+    printError 'Webhare does not seem to be running. Please (re)start Webhare and try again'
+    exit 67
   fi
-
-    if [[ "$1" == '--help' ]] || [[ "$1" == '-h' ]]; then
-      fullUsage
-      exit 0
-    fi
 }
 
 function setGlobalVariables()
 {
-  TEMPLATETAG=$1
+  TEMPLATETAG="$1"
   DEBUGMODE=false #FIXME: Make this a param?; assumes /.../installedmodules/ncbasetests/ exists
   CREATE_SITE=true
   MODS_DIR="$(wh getdatadir)installedmodules/"
@@ -198,7 +223,7 @@ function getTitleFromUser()
 
   setFolderNameFromTitle
 
-  if [ -d "$MODS_DIR$NAME" ]; then
+  if [ -d "${MODS_DIR}${FOLDER_NAME}" ]; then
     echo 'A directory for given title already exists. Please try another title.'
     TITLE=''
     getTitleFromUser
@@ -219,10 +244,9 @@ function askForTitle()
 
 function setFolderNameFromTitle()
 {
-  NAME=$(converttofoldername "${TITLE}")
+  FOLDER_NAME=$(converttofoldername "${TITLE}")
 }
 # ==============================================================================
-
 
 # ==============================================================================
 #
@@ -231,11 +255,11 @@ checkConstraints $@
 printf "\n## This script will create a new site using the default template ##\n\n"
 setGlobalVariables $@
 askForTitle
-createrepository $NAME
-updatefilecontents $NAME
-if $CREATE_SITE; then
-  runsetupscript $NAME
+createrepository "${MODS_DIR}${FOLDER_NAME}" "${TITLE}"
+updatefilecontents "${MODS_DIR}${FOLDER_NAME}" "${TITLE}"
+if ${CREATE_SITE}; then
+  runsetupscript "${MODS_DIR}${FOLDER_NAME}" "${TITLE}"
 fi
-cleanup $NAME
-
+cleanup "${MODS_DIR}${FOLDER_NAME}"
+# ==============================================================================
 #EOF
