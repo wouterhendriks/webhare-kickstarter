@@ -73,7 +73,7 @@ function printStatus()
 }
 
 function isInstalled() {
-    return $(command -v "${1}" >/dev/null 2>&1);
+    return "$(command -v "${1}" >/dev/null 2>&1)"
 }
 
 function converttofoldername()
@@ -215,7 +215,7 @@ function setGlobalVariables()
 
 function getTitleFromUser()
 {
-  while read -p 'Title: ' TITLE && [[ -z "$TITLE" ]] ; do
+  while read -r -p 'Title: ' TITLE && [[ -z "$TITLE" ]] ; do
     printf "\nPlease enter something!\n\n"
   done
 
@@ -251,9 +251,9 @@ function setFolderNameFromTitle()
 # ==============================================================================
 #
 # ------------------------------------------------------------------------------
-checkConstraints $@
+checkConstraints "$@"
 printf "\n## This script will create a new site using the default template ##\n\n"
-setGlobalVariables $@
+setGlobalVariables "$@"
 askForTitle
 createrepository "${MODS_DIR}${FOLDER_NAME}" "${TITLE}"
 updatefilecontents "${MODS_DIR}${FOLDER_NAME}" "${TITLE}"
@@ -262,4 +262,5 @@ if ${CREATE_SITE}; then
 fi
 cleanup "${MODS_DIR}${FOLDER_NAME}"
 # ==============================================================================
+
 #EOF
