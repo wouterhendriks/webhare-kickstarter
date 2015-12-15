@@ -50,6 +50,15 @@ INTEGER defaultoutputserverid := SELECT AS INTEGER id
 IF (defaultoutputserverid > 0)
   newsite->SetPrimaryOutput(defaultoutputserverid, "/" || GetSafeFileName(name) || "/");
 
+// create an index file
+OBJECT homepage := newsite->rootobject->CreateFile([ name := "index.html"
+                                                   , title := "Homepage"
+                                                   , type := 5 // HTML file
+                                                   , publish := TRUE
+                                                   ]);
+
+newsite->rootobject->UpdateMetaData([ indexdoc := homepage->id ]);
+
 RECORD ARRAY errors := trans->CommitWork();
 
 IF (Length(errors) > 0)
