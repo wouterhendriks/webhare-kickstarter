@@ -161,7 +161,9 @@ Your test/live URLs here
 Your backend URLs here
 
 ## Installation
+```
 git clone <URL-to-Git-repository> "\$(wh getdatadir)installedmodules/${FOLDER_NAME}"
+```
 
 ## To satisfy the module dependencies:
 - whcd ${FOLDER_NAME}/webdesigns/${FOLDER_NAME}/
