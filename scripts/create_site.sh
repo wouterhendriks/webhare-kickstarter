@@ -54,12 +54,12 @@ fullUsage() {
 }
 
 shortUsage() {
-  echo -e 'Usage:\n\t$(wh getmoduledir wh_creator)scripts/create_site.sh' "$*\n"
+  echo -e 'Usage:\n\n\t$(wh getmoduledir wh_creator)scripts/create_site.sh' "$*\n"
 }
 
 function printError()
 {
-  echo -e "\n !     ERROR: $*\n" >&2
+  printf "\n\033[1;31m! \tERROR: $*\033[0m\n\n" >&2
 }
 
 function printTopic()
