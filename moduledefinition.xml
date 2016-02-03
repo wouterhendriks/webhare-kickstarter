@@ -5,9 +5,7 @@
     <version>0.1</version>
     <description>xxdescriptionxx</description>
     <author>Nerds &amp; Company</author>
-    <packaging download="true">
-      <dependency module="nerdsandcompany" />
-    </packaging>
+    <packaging download="true" />
   </meta>
 
   <publisher>

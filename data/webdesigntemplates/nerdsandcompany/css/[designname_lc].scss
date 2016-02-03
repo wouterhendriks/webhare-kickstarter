@@ -1,13 +1,10 @@
 /* Defaults */
+* {
+  box-sizing: border-box;
+}
+
 html {
   font: 10pt Arial, Sans-Serif;
   background-color: #ffffff;
   color: #000000;
-}
-
-body {
-  -webkit-text-size-adjust: none;
-  -ms-text-size-adjust: none;
-  -moz-text-size-adjust: none;
-  text-size-adjust: none;
 }

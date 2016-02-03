@@ -7,17 +7,11 @@ module.exports.getSiteConfig = function() {
   // Make sure we have obj/site as some sort of object, to prevent crashes on naive 'if ($wh.config.obj.x)' tests'
   var siteconfig = whconfigel ? JSON.parse(whconfigel.textContent) : {};
 
-  if (!siteconfig.obj) {
-
+  if (!siteconfig.obj)
     siteconfig.obj = {};
 
-  }
-
-  if (!siteconfig.site) {
-
+  if (!siteconfig.site)
     siteconfig.site = {};
-
-  }
 
   return siteconfig;
 

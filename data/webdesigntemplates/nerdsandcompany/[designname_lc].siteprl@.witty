@@ -49,23 +49,11 @@
     <!-- disable keywords field -->
     <baseproperties keywords="false" />
 
-    <!-- Enable Word conversion?
-    <mswordconversion languageattributes="false" relativefontbase="10">
-      <profile emptydocobjects="false">
-        <style mswordstyleid="1"/>
-        <style mswordstyleid="2"/>
-        <style />
-        <style toclevel="99" mswordcustomstyle="HTML Sourcecode" embedtype="rawhtml" />
-      </profile>
-    </mswordconversion>
-    -->
-
     <!-- property 'name' on 'account' -->
     <!--
     <analytics xmlns="http://www.webhare.net/xmlns/socialite" type="universal" code="UA-XXXXXXX-X" />
     -->
 
-    <!-- Default types -->
     <denyfiletype typedef="*" />
     <allowfiletype typedef="http://www.webhare.net/xmlns/publisher/imagefile" />
     <allowfiletype typedef="http://www.webhare.net/xmlns/publisher/pdffile" />

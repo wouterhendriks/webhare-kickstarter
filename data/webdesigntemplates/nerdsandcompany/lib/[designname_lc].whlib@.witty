@@ -7,7 +7,6 @@ LOADLIB "module::publisher/siteapi.whlib";
 LOADLIB "module::publisher/webdesign.whlib";
 LOADLIB "module::system/database.whlib";
 LOADLIB "module::system/whfs.whlib";
-LOADLIB "module::nerdsandcompany/sites/defaults.whlib";
 
 PUBLIC OBJECTTYPE [designobjectname] EXTEND WebDesignBase
 <
