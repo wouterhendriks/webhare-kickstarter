@@ -12,7 +12,6 @@ PUBLIC OBJECTTYPE [designobjectname] EXTEND WebDesignBase
 <
   UPDATE PUBLIC RECORD FUNCTION GetPageConfig()
   {
-    RETURN [[ nchead := PTR PrintNerdsAndCompanyHead()
-           ];
+    RETURN DEFAULT RECORD;
   }
 >;
