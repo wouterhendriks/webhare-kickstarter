@@ -162,7 +162,7 @@ Your backend URLs here
 
 ## Installation
 ```
-git clone <URL-to-Git-repository> "\$(wh getdatadir)installedmodules/${FOLDER_NAME}"
+git clone URL-to-Git-repository "\$(wh getdatadir)installedmodules/${FOLDER_NAME}"
 ```
 
 ## To satisfy the module dependencies:
