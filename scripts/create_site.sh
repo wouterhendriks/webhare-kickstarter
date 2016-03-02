@@ -143,6 +143,8 @@ function runsetupscript()
 
   printStatus 'Asking Webhare to run the webdesign script'
   wh run "${projectDirectory}/scripts/setup_new_webdesign.whscr" "${projectTitle}" "$FOLDER_NAME" "$TEMPLATETAG"
+
+  wh sitemgr zip "${projectTitle}"
 }
 
 function replacereadme()
@@ -190,7 +192,7 @@ function cleanup()
 
   printStatus 'Removing obsolete files and folders'
   rm -rf "${projectDirectory}/scripts/"
-  rm -rf "${projectDirectory}/data/"
+  rm -rf "${projectDirectory}/data/webdesigntemplates/"
 }
 
 function checkConstraints()
