@@ -3,12 +3,13 @@
 
   <meta>
     <version>0.1</version>
-    <description>xxdescriptionxx</description>
+    <description>REPLACEtitleREPLACE</description>
     <author>Nerds &amp; Company</author>
     <packaging download="true" />
   </meta>
 
   <publisher>
+    <installsite name="REPLACEtitleREPLACE" storage="REPLACEfoldernameREPLACE.zip" />
     <webdesign name="nerdsandcompany" title="Blank NC webdesign" siteprofile="[designname_lc].siteprl" istemplate="true" path="data/webdesigntemplates/nerdsandcompany"></webdesign>
   </publisher>
 

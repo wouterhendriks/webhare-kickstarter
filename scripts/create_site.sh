@@ -126,7 +126,8 @@ function updatefilecontents()
 
   printTopic 'Updating file contents'
 
-  sed -i '' "s/xxdescriptionxx/${projectTitle}/g" "${projectDirectory}/moduledefinition.xml"
+  sed -i '' "s/REPLACEtitleREPLACE/${projectTitle}/g" "${projectDirectory}/moduledefinition.xml"
+  sed -i '' "s/REPLACEfoldernameREPLACE/${FOLDER_NAME}/g" "${projectDirectory}/moduledefinition.xml"
   sed -i '' '/<webdesign /d' "${projectDirectory}/moduledefinition.xml"
 }
 
@@ -155,19 +156,29 @@ function replacereadme()
 # ${projectTitle}
 
 ## URLs
-Your test/live URLs here
+Your live/test/acceptance URLs here
 
 ## Backend
 Your backend URLs here
 
 ## Installation
-<code>git clone <URL-to-Git-repository> "\$(wh getdatadir)installedmodules/${FOLDER_NAME}"</code>
+\`\`\`
+#!bash
+# Clone the repo and save as '${FOLDER_NAME}'
+git clone <URL-to-Git-repository> "\$(wh getdatadir)installedmodules/${FOLDER_NAME}"
 
-## To satisfy the module dependencies:
+# Make sure WebHare knows about this module
+wh softreset
+
+## Satisfy the module dependencies:
 - whcd ${FOLDER_NAME}/webdesigns/${FOLDER_NAME}/
-- if whcd is unavailable, try cd "\$(wh getmoduledir ${FOLDER_NAME})webdesigns/${FOLDER_NAME}/"
 - wh noderun npm install
 - wh noderun bower install
+# if whcd is unavailable, try cd "\$(wh getmoduledir ${FOLDER_NAME})webdesigns/${FOLDER_NAME}/"
+
+# Install the site
+wh sitemgr install '${projectTitle}'
+\`\`\`
 EOF
 }
 
