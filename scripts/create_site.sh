@@ -1,32 +1,23 @@
 #!/usr/bin/env bash
 
 # ==============================================================================
-#/ Webhare -- Website Creator
+#/ WebHare -- Website Creator
 #/ ------------------------------------------------------------------------------
-#/ This script will will generate a basic module and site for Webhare
+#/ This script will will generate a basic module and site for WebHare, based on a specific Nerds & Company template
 #/
 #/ To create a site, run as follows:
 #/
-#/     $(wh getmoduledir webhare_kickstarter)scripts/create_site.sh [template_name]
+#/     $(wh getmoduledir webhare_kickstarter)scripts/create_site.sh
 #/
-#/ Where "template_name" specifies a template. To use the default template run:
-#/
-#/     $(wh getmoduledir webhare_kickstarter)scripts/create_site.sh 'publisher:blank'
-#/
-#/ To run with the template specific for Nerds & Company, run:
-#/
-#/     $(wh getmoduledir webhare_kickstarter)scripts/create_site.sh 'webhare_kickstarter:nerdsandcompany'
-#/
-#/ The script will ask for a project name.
+#/ The script will ask for a project title, which will automatically be converted to a proper folder name.
 #/
 #/ ------------------------------------------------------------------------------
 #/ The following ExitCodes are used:
 #/
 #/ 1 or 64  : General Error
 #/
-#/ 65 : Not enough parameters given
 #/ 66 : The `wh` command is not available
-#/ 67 : Webhare is not running
+#/ 67 : WebHare is not running
 # ==============================================================================
 
 set -o nounset # exit on use of an uninitialised variable, same as -u
@@ -138,10 +129,10 @@ function runsetupscript()
 
   printTopic 'Creating webdesign in repository and a new site in the Publisher'
 
-  printStatus 'Restarting Webhare'
+  printStatus 'Restarting WebHare'
   wh softreset # is needed because the script expects an already initialized webhare_kickstarter module, would be nice if the WH script could take care of this
 
-  printStatus 'Asking Webhare to run the webdesign script'
+  printStatus 'Asking WebHare to run the webdesign script'
   wh run "${projectDirectory}/scripts/setup_new_webdesign.whscr" "${projectTitle}" "$FOLDER_NAME" "$TEMPLATETAG"
 
   wh sitemgr zip "${projectTitle}"
@@ -197,25 +188,21 @@ function cleanup()
 
 function checkConstraints()
 {
-  if [[ $# -eq 0 ]] ; then
-    printError 'Missing parameter: "template name", for example: webhare_kickstarter:nerdsandcompany'
-    shortUsage '[template_name]'
-    exit 65
-  elif [[ "$1" == '--help' ]] || [[ "$1" == '-h' ]]; then
+  if [[ "$0" == '--help' ]] || [[ "$0" == '-h' ]]; then
     fullUsage
     exit 0
   elif [[ $(isInstalled 'wh') -ne 0 ]] ; then
-    printError 'Webhare binary is not installed (or or not properly aliased)'
+    printError 'WebHare binary is not installed (or or not properly aliased)'
     exit 66
   elif [[ "$(wh isrunning)" -ne 0 ]];then
-    printError 'Webhare does not seem to be running. Please (re)start Webhare and try again'
+    printError 'WebHare does not seem to be running. Please (re)start WebHare and try again'
     exit 67
   fi
 }
 
 function setGlobalVariables()
 {
-  TEMPLATETAG="$1"
+  TEMPLATETAG="webhare_kickstarter:nerdsandcompany"
   DEBUGMODE=false #FIXME: Make this a param?; assumes /.../installedmodules/ncbasetests/ exists
   CREATE_SITE=true
   MODS_DIR="$(wh getdatadir)installedmodules/"

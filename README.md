@@ -11,12 +11,7 @@ git clone git@bitbucket.org:itmundi/webhare-kickstarter.git "$(wh getdatadir)ins
 
 * Run the following script to create the site:
 ```
-$(wh getmoduledir webhare_kickstarter)scripts/create_site.sh webhare_kickstarter:nerdsandcompany
-```
-
-The 'webhare_kickstarter:nerdsandcompany' parameter is the template tag and specific for Nerds & Company. You can make and use your own, or use the default WebHare one:
-```
-publisher:blank
+$(wh getmoduledir webhare_kickstarter)scripts/create_site.sh
 ```
 
 A new website should be created now. Refer to the output on how to move on.
