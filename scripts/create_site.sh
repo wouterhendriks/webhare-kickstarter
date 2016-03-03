@@ -7,15 +7,15 @@
 #/
 #/ To create a site, run as follows:
 #/
-#/     $(wh getmoduledir wh_creator)scripts/create_site.sh [template_name]
+#/     $(wh getmoduledir webhare_kickstarter)scripts/create_site.sh [template_name]
 #/
 #/ Where "template_name" specifies a template. To use the default template run:
 #/
-#/     $(wh getmoduledir wh_creator)scripts/create_site.sh 'publisher:blank'
+#/     $(wh getmoduledir webhare_kickstarter)scripts/create_site.sh 'publisher:blank'
 #/
 #/ To run with the template specific for Nerds & Company, run:
 #/
-#/     $(wh getmoduledir wh_creator)scripts/create_site.sh 'wh_creator:nerdsandcompany'
+#/     $(wh getmoduledir webhare_kickstarter)scripts/create_site.sh 'webhare_kickstarter:nerdsandcompany'
 #/
 #/ The script will ask for a project name.
 #/
@@ -42,7 +42,7 @@ declare FOLDER_NAME
 declare TEMPLATETAG
 declare TITLE
 
-readonly SOURCE_REPOSITORY='https://github.com/WouterHendriks/wh-creator.git'
+readonly SOURCE_REPOSITORY='git@bitbucket.org:itmundi/webhare-kickstarter.git'
 # ==============================================================================
 
 # ==============================================================================
@@ -54,7 +54,7 @@ fullUsage() {
 }
 
 shortUsage() {
-  echo -e 'Usage:\n\n\t$(wh getmoduledir wh_creator)scripts/create_site.sh' "$*\n"
+  echo -e 'Usage:\n\n\t$(wh getmoduledir webhare_kickstarter)scripts/create_site.sh' "$*\n"
 }
 
 function printError()
@@ -88,8 +88,8 @@ function cloneRepository()
 
   printTopic "Cloning source repository"
   if $DEBUGMODE; then
-    printStatus "Copying from '$(wh getmoduledir wh_creator)' to '${projectDirectory}'"
-    cp -r "$(wh getmoduledir wh_creator)" "${projectDirectory}"
+    printStatus "Copying from '$(wh getmoduledir webhare_kickstarter)' to '${projectDirectory}'"
+    cp -r "$(wh getmoduledir webhare_kickstarter)" "${projectDirectory}"
   else
      git clone "$sourceRepository" "${projectDirectory}"
   fi
@@ -139,7 +139,7 @@ function runsetupscript()
   printTopic 'Creating webdesign in repository and a new site in the Publisher'
 
   printStatus 'Restarting Webhare'
-  wh softreset # is needed because the script expects an already initialized wh_creator module, would be nice if the WH script could take care of this
+  wh softreset # is needed because the script expects an already initialized webhare_kickstarter module, would be nice if the WH script could take care of this
 
   printStatus 'Asking Webhare to run the webdesign script'
   wh run "${projectDirectory}/scripts/setup_new_webdesign.whscr" "${projectTitle}" "$FOLDER_NAME" "$TEMPLATETAG"
@@ -198,7 +198,7 @@ function cleanup()
 function checkConstraints()
 {
   if [[ $# -eq 0 ]] ; then
-    printError 'Missing parameter: "template name", for example: wh_creator:nerdsandcompany'
+    printError 'Missing parameter: "template name", for example: webhare_kickstarter:nerdsandcompany'
     shortUsage '[template_name]'
     exit 65
   elif [[ "$1" == '--help' ]] || [[ "$1" == '-h' ]]; then

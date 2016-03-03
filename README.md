@@ -1,24 +1,20 @@
-# WebHare website builder
+# WebHare website kickstarter
 
-With this module, you can kickstart your new website by running a Bash script that will generate a basic module + site for you.
+With this module, you can kickstart your new website by running a Bash script that will generate a basic module + (webdesign) site for you.
 
 ## To create a website
 
-* If you don't have this repo yet, clone it as 'wh_creator':
-
+* If you don't have this repo yet, clone it as 'webhare_kickstarter':
 ```
-git clone https://github.com/WouterHendriks/wh-creator.git "$(wh getdatadir)installedmodules/wh_creator"
+git clone git@bitbucket.org:itmundi/webhare-kickstarter.git "$(wh getdatadir)installedmodules/webhare_kickstarter"
 ```
 
 * Run the following script to create the site:
-
-
 ```
-$(wh getmoduledir wh_creator)scripts/create_site.sh wh_creator:nerdsandcompany
+$(wh getmoduledir webhare_kickstarter)scripts/create_site.sh webhare_kickstarter:nerdsandcompany
 ```
 
-The 'wh_creator:nerdsandcompany' parameter is the template tag and specific for Nerds & Company. You can make and use your own, or use the default WebHare one:
-
+The 'webhare_kickstarter:nerdsandcompany' parameter is the template tag and specific for Nerds & Company. You can make and use your own, or use the default WebHare one:
 ```
 publisher:blank
 ```
