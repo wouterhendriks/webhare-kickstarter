@@ -163,11 +163,12 @@ git clone <URL-to-Git-repository> "\$(wh getdatadir)installedmodules/${FOLDER_NA
 # Make sure WebHare knows about this module
 wh softreset
 
-## Satisfy the module dependencies:
-- whcd ${FOLDER_NAME}/webdesigns/${FOLDER_NAME}/
-- wh noderun npm install
-- wh noderun bower install
-# if whcd is unavailable, try cd "\$(wh getmoduledir ${FOLDER_NAME})webdesigns/${FOLDER_NAME}/"
+## Satisfy the module dependencies
+whcd ${FOLDER_NAME}/webdesigns/${FOLDER_NAME}/
+wh noderun npm install
+wh noderun bower install
+# if whcd is unavailable, try:
+# cd "\$(wh getmoduledir ${FOLDER_NAME})webdesigns/${FOLDER_NAME}/"
 
 # Install the site
 wh sitemgr install '${projectTitle}'
