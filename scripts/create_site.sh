@@ -185,6 +185,7 @@ function cleanup()
   printStatus 'Removing obsolete files and folders'
   rm -rf "${projectDirectory}/scripts/"
   rm -rf "${projectDirectory}/data/webdesigntemplates/"
+  rm -f "${projectDirectory}/webdesigns/.gitkeep"
 }
 
 function checkConstraints()
