@@ -55,6 +55,7 @@ OBJECT homepage := newsite->rootobject->CreateFile([ name := "index.html"
                                                    , title := "Homepage"
                                                    , type := 5 // HTML file
                                                    , publish := TRUE
+                                                   , data := StringToBlob("Hello world")
                                                    ]);
 
 newsite->rootobject->UpdateMetaData([ indexdoc := homepage->id ]);
