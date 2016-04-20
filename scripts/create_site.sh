@@ -63,9 +63,9 @@ function printStatus()
     echo "-----> $*"
 }
 
-function isInstalled() {
-    return "$(command -v "${1}" >/dev/null 2>&1)"
-}
+#function isInstalled() {
+#    return "$(command -v "${1}" >/dev/null 2>&1)"
+#}
 
 function converttofoldername()
 {
@@ -185,7 +185,6 @@ function cleanup()
   printStatus 'Removing obsolete files and folders'
   rm -rf "${projectDirectory}/scripts/"
   rm -rf "${projectDirectory}/data/webdesigntemplates/"
-  rm -f "${projectDirectory}/webdesigns/.gitkeep"
 }
 
 function checkConstraints()
@@ -193,9 +192,9 @@ function checkConstraints()
   if [[ "$0" == '--help' ]] || [[ "$0" == '-h' ]]; then
     fullUsage
     exit 0
-  elif [[ $(isInstalled 'wh') -ne 0 ]] ; then
-    printError 'WebHare binary is not installed (or or not properly aliased)'
-    exit 66
+  #elif [[ $(isInstalled 'wh') -ne 0 ]] ; then
+  #  printError 'WebHare binary is not installed (or or not properly aliased)'
+  #  exit 66
   elif [[ "$(wh isrunning)" -ne 0 ]];then
     printError 'WebHare does not seem to be running. Please (re)start WebHare and try again'
     exit 67
@@ -234,7 +233,7 @@ function getTitleFromUser()
 
 function askForTitle()
 {
-  printf "Enter the title for your project. Please make sure this is a unique title, since we don't have proper error checking yet.\n\n"
+  printf "Enter the title for your project. A (folder) name, based on this title, will be generated automagically.\n\n"
 
   getTitleFromUser
 
