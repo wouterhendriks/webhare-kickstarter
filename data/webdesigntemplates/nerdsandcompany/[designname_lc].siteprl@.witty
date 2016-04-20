@@ -23,7 +23,7 @@
                witty="templates/[designname_lc].witty"
                library="lib/[designname_lc].whlib"
                objectname="[designobjectname]"
-               basedependency="js/[designname_lc].js"
+               basedependency="js/[designname_lc].es"
                maxcontentwidth="960px">
     </webdesign>
 

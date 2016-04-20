@@ -1,16 +1,13 @@
 [! Careful here, any subscript operators that should still be present in the
    final javascript file must be double escaped: [[ (but not ]])
 
-!]"use strict";
+!]// whBase includes the 'config' cell, which contains useful backend/server information
+const whBase = require('@webhare-system/compat/base');
 
+// load the main SCSS
 require('../css/[designname_lc].scss');
 
-// Load JS file(s)
-var utilities = require('./utilities.js');
-
-// get site config, containing info like dtapstage, imgroot, islive, as well as optional extra information from the backend
-var siteconfig = utilities.getSiteConfig();
-
+// DOM-ready function
 document.addEventListener("DOMContentLoaded", function(event) {
 
 });
