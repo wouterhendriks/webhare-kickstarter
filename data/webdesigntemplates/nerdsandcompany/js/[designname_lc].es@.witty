@@ -2,12 +2,12 @@
    final javascript file must be double escaped: [[ (but not ]])
 
 !]// whBase includes the 'config' cell, which contains useful backend/server information
-const whBase = require('@webhare-system/compat/base');
+// const whBase = require('@webhare-system/compat/base');
 
 // load the main SCSS
 require('../css/[designname_lc].scss');
 
 // DOM-ready function
-document.addEventListener("DOMContentLoaded", function(event) {
+document.addEventListener('DOMContentLoaded', () => {
 
 });
