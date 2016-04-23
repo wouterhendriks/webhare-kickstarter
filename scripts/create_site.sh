@@ -94,10 +94,6 @@ function cleanRepository()
   printStatus 'Deleting old .git folder'
   rm -rf "${projectDirectory}/.git/"
   printStatus 'Navigating to the modules directory'
-  pushd "${projectDirectory}" > /dev/null
-  printStatus 'Initializing a new Git repository'
-  git init && git add . && git commit -m 'Initial revision'
-  popd
 }
 
 function createrepository()
@@ -178,13 +174,22 @@ EOF
 
 function cleanup()
 {
- local projectDirectory="$1"
+  local projectDirectory="$1"
 
   printTopic 'Cleaning up'
 
   printStatus 'Removing obsolete files and folders'
   rm -rf "${projectDirectory}/scripts/"
   rm -rf "${projectDirectory}/data/webdesigntemplates/"
+}
+
+function doGitCommit()
+{
+  printTopic 'Git stuff'
+  pushd "${projectDirectory}" > /dev/null
+  printStatus 'Initializing a new Git repository and committing the created files'
+  git init && git add . && git commit -m 'Initial revision'
+  popd
 }
 
 function checkConstraints()
@@ -262,6 +267,8 @@ if ${CREATE_SITE}; then
   runsetupscript "${MODS_DIR}${FOLDER_NAME}" "${TITLE}"
 fi
 cleanup "${MODS_DIR}${FOLDER_NAME}"
+doGitCommit
+
 # ==============================================================================
 
 #EOF
