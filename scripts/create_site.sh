@@ -188,7 +188,9 @@ function doGitCommit()
   printTopic 'Git stuff'
   pushd "${projectDirectory}" > /dev/null
   printStatus 'Initializing a new Git repository and committing the created files'
-  git init && git add . && git commit -m 'Initial revision'
+  {
+    git init && git add . && git commit -m 'Initial revision'
+  } &> /dev/null
   popd
 }
 
@@ -238,6 +240,10 @@ function getTitleFromUser()
 
 function askForTitle()
 {
+  if $DEBUGMODE; then
+    printf "\e[31m! Debug mode is enabled !\e[0m\n\n"
+  fi
+
   printf "Enter the title for your project. A (folder) name, based on this title, will be generated automagically.\n\n"
 
   getTitleFromUser
@@ -252,6 +258,7 @@ function setFolderNameFromTitle()
 {
   FOLDER_NAME=$(converttofoldername "${TITLE}")
 }
+
 # ==============================================================================
 
 # ==============================================================================
