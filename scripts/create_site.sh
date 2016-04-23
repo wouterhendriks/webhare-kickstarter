@@ -88,7 +88,7 @@ function cloneRepository()
 
 function cleanRepository()
 {
- local projectDirectory="$1"
+  local projectDirectory="$1"
 
   printTopic 'Cleaning up the newly created repository'
   printStatus 'Deleting old .git folder'
@@ -96,7 +96,7 @@ function cleanRepository()
   printStatus 'Navigating to the modules directory'
   pushd "${projectDirectory}" > /dev/null
   printStatus 'Initializing a new Git repository'
-  git init && git commit --allow-empty -m 'Initial commit.'
+  git init && git add . && git commit -m 'Initial revision'
   popd
 }
 
