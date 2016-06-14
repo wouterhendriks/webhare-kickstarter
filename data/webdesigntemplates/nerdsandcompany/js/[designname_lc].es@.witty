@@ -10,6 +10,9 @@ require('../css/[designname_lc].scss');
 // support rich content (video, images)
 require('@webhare-publisher/richcontent/all');
 
+// force a single webpack bundle by (always) loading all page-specific JavaScript here
+require('./pages.es');
+
 // DOM-ready function
 document.addEventListener('DOMContentLoaded', (/* event */) => {
 

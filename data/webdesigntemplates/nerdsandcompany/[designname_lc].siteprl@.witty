@@ -61,4 +61,28 @@
 
   </apply>
 
+  <!-- ***********************************************************************
+
+       Homepage
+
+  *********************************************************************** -->
+  <!-- FIXME: Update namespace URL!
+  <contenttype namespace="http://www.example.com/xmlns/filetype/home"></contenttype>
+  <filetype typedef="http://www.example.com/xmlns/filetype/home"
+            title="Homepage"
+            blobiscontent="false"
+            ispublishable="true"
+            tolliumicon="tollium:actions/home"
+            isacceptableindex="false"
+            ispublishedassubdir="true"
+            needstemplate="true"
+            />
+
+  <apply>
+    <to type="file" filetype="http://www.example.com/xmlns/filetype/home" />
+    <bodyrenderer library="pages/home/home.whlib" objectname="homepage" />
+    <setobjecteditor name="publisher:propertydialog" />
+  </apply>
+  -->
+
 </siteprofile>

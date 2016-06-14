@@ -1,0 +1,20 @@
+<?wh
+LOADLIB "wh::witty.whlib";
+LOADLIB "module::publisher/publisher.whlib";
+LOADLIB "module::publisher/webdesign.whlib";
+
+PUBLIC OBJECTTYPE HomePage EXTEND StaticPageBase
+<
+  RECORD wittydata;
+
+  UPDATE PUBLIC MACRO PrepareForRendering(OBJECT webdesign)
+  {
+    INSERT "page-home" INTO webdesign->htmlclasses AT END;
+  }
+
+  UPDATE PUBLIC MACRO RunBody(OBJECT webdesign)
+  {
+    OBJECT wittylib := LoadWittyLibrary(webdesign->designfolder || "pages/home/home.witty", "HTML");
+    wittylib->Run(this->wittydata);
+  }
+>;
