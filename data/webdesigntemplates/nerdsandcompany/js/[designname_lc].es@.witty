@@ -7,7 +7,10 @@
 // load the main SCSS
 require('../css/[designname_lc].scss');
 
+// support rich content (video, images)
+require('@webhare-publisher/richcontent/all');
+
 // DOM-ready function
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', (/* event */) => {
 
 });

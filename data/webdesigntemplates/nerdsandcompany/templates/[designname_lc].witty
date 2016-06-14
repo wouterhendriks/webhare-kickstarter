@@ -18,3 +18,8 @@
     [contents]
   </main>
 [/component]
+
+[! component 404]
+  <h1>Niet gevonden</h1>
+  <p>De opgegeven pagina kon helaas niet worden gevonden.</p>
+[/component !]

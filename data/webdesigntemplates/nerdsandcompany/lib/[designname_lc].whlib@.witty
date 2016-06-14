@@ -14,4 +14,14 @@ PUBLIC OBJECTTYPE [designobjectname] EXTEND WebDesignBase
   {
     RETURN DEFAULT RECORD;
   }
+
+  /*
+  UPDATE PUBLIC MACRO PrintErrorPage(INTEGER errorcode, RECORD harescriptinfo, STRING url)
+  {
+    IF (errorcode = 404)
+      EmbedWittyComponent("404", DEFAULT RECORD);
+    ELSE
+      WebDesignBase::PrintErrorPage(errorcode, harescriptinfo, url);
+  }
+  */
 >;
