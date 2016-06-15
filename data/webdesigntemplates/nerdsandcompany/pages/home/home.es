@@ -1,4 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-  if (!$('html').hasClass('page-home'))
+  if (!document.documentElement.classList.contains('page-home'))
     return;
 });
