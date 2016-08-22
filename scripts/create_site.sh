@@ -3,7 +3,7 @@
 # ==============================================================================
 #/ WebHare -- Website Creator
 #/ ------------------------------------------------------------------------------
-#/ This script will will generate a basic module and site for WebHare, based on a specific Nerds & Company template
+#/ This script will will generate a basic module and site for WebHare, based on a specific Webwerf template
 #/
 #/ To create a site, run as follows:
 #/
@@ -210,7 +210,7 @@ function checkConstraints()
 
 function setGlobalVariables()
 {
-  TEMPLATETAG="webhare_kickstarter:nerdsandcompany"
+  TEMPLATETAG="webhare_kickstarter:webwerf"
   DEBUGMODE=false #FIXME: Make this a param?; assumes /.../installedmodules/ncbasetests/ exists
   CREATE_SITE=true
   MODS_DIR="$(wh getdatadir)installedmodules/"
