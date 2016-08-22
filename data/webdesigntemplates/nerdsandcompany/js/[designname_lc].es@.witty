@@ -1,10 +1,8 @@
 [! Careful here, any subscript operators that should still be present in the
    final javascript file must be double escaped: [[ (but not ]])
 
-!]// whBase includes the 'config' cell, which contains useful backend/server information
-// const whBase = require('@webhare-system/compat/base');
+!]// const whBase = require('@webhare-system/compat/base');
 
-// load the main SCSS
 require('../css/[designname_lc].scss');
 
 // support rich content (video, images)
@@ -13,7 +11,9 @@ require('@webhare-publisher/richcontent/all');
 // force a single webpack bundle by (always) loading all page-specific JavaScript here
 require('./pages.es');
 
-// DOM-ready function
-document.addEventListener('DOMContentLoaded', (/* event */) => {
+import * as dompack from 'dompack';
+import { qS as $, qSA as $$ } from 'dompack/extra/qsa';
+
+document.addEventListener('DOMContentLoaded', () => {
 
 });

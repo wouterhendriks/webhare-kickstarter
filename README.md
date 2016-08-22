@@ -6,7 +6,7 @@ With this module, you can kickstart your new website by running a Bash script th
 
 * If you don't have this repo yet, clone it as 'webhare_kickstarter':
 ```
-git clone git@bitbucket.org:itmundi/webhare-kickstarter.git "$(wh getdatadir)installedmodules/webhare_kickstarter"
+git clone git@gitlab.com:webwerf/webhare-kickstarter.git "$(wh getdatadir)installedmodules/webhare_kickstarter"
 ```
 
 * Run the following script to create the site:

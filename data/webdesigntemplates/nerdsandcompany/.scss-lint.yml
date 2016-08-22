@@ -1,14 +1,16 @@
 linters:
   PropertySortOrder:
-    enabled: true
-    order: smacss
-    ignore_unspecified: false
-    min_properties: 2
-    separate_groups: false
+    enabled: false
   ColorKeyword:
     enabled: false
   ColorVariable:
     enabled: false
+  Comment:
+    enabled: false
   SelectorFormat:
     enabled: true
     convention: hyphenated_BEM
+  QualifyingElement:
+    enabled: false
+  ImportantRule:
+    enabled: false

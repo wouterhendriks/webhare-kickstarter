@@ -33,7 +33,7 @@ declare FOLDER_NAME
 declare TEMPLATETAG
 declare TITLE
 
-readonly SOURCE_REPOSITORY='git@bitbucket.org:itmundi/webhare-kickstarter.git'
+readonly SOURCE_REPOSITORY='git@gitlab.com:webwerf/webhare-kickstarter.git'
 # ==============================================================================
 
 # ==============================================================================
@@ -154,7 +154,7 @@ Your backend URLs here
 \`\`\`
 #!bash
 # Clone the repo and save as '${FOLDER_NAME}'
-git clone <URL-to-Git-repository> "\$(wh getdatadir)installedmodules/${FOLDER_NAME}"
+git clone git@gitlab.com:webwerf/xxxxxxxxxxxxx.git "\$(wh getdatadir)installedmodules/${FOLDER_NAME}"
 
 # Make sure WebHare knows about this module
 wh softreset

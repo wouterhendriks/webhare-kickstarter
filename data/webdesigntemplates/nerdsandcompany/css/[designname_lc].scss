@@ -1,9 +1,15 @@
-* {
-  box-sizing: border-box;
-}
+$font-size: 16px;
+
+@import 'mixins';
+@import 'stylereset';
 
 html {
   background-color: #fff;
   color: #000;
-  font: 10pt Arial, Sans-Serif;
+  font-size: $font-size;
+  line-height: 100%;
+}
+
+body {
+  font-size: 1rem;
 }
