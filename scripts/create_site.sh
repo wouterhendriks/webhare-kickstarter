@@ -33,7 +33,7 @@ declare FOLDER_NAME
 declare TEMPLATETAG
 declare TITLE
 
-readonly SOURCE_REPOSITORY='git@gitlab.com:webwerf/webhare-kickstarter.git'
+readonly SOURCE_REPOSITORY='git@github.com:wouterhendriks/webhare-kickstarter.git'
 # ==============================================================================
 
 # ==============================================================================
