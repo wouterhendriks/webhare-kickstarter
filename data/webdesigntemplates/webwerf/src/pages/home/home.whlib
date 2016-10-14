@@ -14,7 +14,7 @@ PUBLIC OBJECTTYPE HomePage EXTEND StaticPageBase
 
   UPDATE PUBLIC MACRO RunBody(OBJECT webdesign)
   {
-    OBJECT wittylib := LoadWittyLibrary(webdesign->designfolder || "pages/home/home.witty", "HTML");
+    OBJECT wittylib := LoadWittyLibrary(this->pagefolder || "home.witty", "HTML-NI");
     wittylib->Run(this->wittydata);
   }
 >;
