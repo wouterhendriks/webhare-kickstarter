@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<siteprofile xmlns="http://www.webhare.net/xmlns/publisher/siteprofile"
+             xmlns:t="http://www.webhare.net/xmlns/tollium/screens"
+             xmlns:p="http://www.webhare.net/xmlns/publisher/components"
+             >
+
+  <!-- ***********************************************************************
+
+       Homepage
+
+  *********************************************************************** -->
+  <!-- FIXME: namespace
+  <contenttype namespace="http://www.example.com/filetype/home"></contenttype>
+  <filetype typedef="http://www.example.com/filetype/home"
+            title="Homepage"
+            blobiscontent="false"
+            ispublishable="true"
+            tolliumicon="tollium:actions/home"
+            isacceptableindex="false"
+            ispublishedassubdir="true"
+            needstemplate="true"
+            />
+
+  <apply>
+    <to type="file" filetype="http://www.example.com/filetype/home" />
+    <bodyrenderer library="home.whlib" objectname="homepage" />
+    <setobjecteditor name="publisher:propertydialog" />
+  </apply>
+  -->
+
+</siteprofile>

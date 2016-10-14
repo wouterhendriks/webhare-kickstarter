@@ -81,38 +81,15 @@
     <allowfiletype typedef="http://www.webhare.net/xmlns/publisher/externallink" />
     <allowfiletype typedef="http://www.webhare.net/xmlns/publisher/internallink" />
     <allowfiletype typedef="http://www.webhare.net/xmlns/publisher/richdocumentfile" />
-
   </apply>
-
-  <!-- ***********************************************************************
-
-       Homepage
-
-  *********************************************************************** -->
-  <!-- FIXME: namespace
-  <contenttype namespace="http://www.example.com/filetype/home"></contenttype>
-  <filetype typedef="http://www.example.com/filetype/home"
-            title="Homepage"
-            blobiscontent="false"
-            ispublishable="true"
-            tolliumicon="tollium:actions/home"
-            isacceptableindex="false"
-            ispublishedassubdir="true"
-            needstemplate="true"
-            />
-
-  <apply>
-    <to type="file" filetype="http://www.example.com/filetype/home" />
-    <bodyrenderer library="pages/home/home.whlib" objectname="homepage" />
-    <setobjecteditor name="publisher:propertydialog" />
-  </apply>
-  -->
 
   <!-- ***********************************************************************
 
        Load components and pages
 
   *********************************************************************** -->
+  <applysiteprofile fullpath="src/pages/home/home.siteprl"/>
+
   <!-- Replaces default photoalbum -->
   <applysiteprofile fullpath="moduleroot::webwerf/data/general/photoalbum.xml" />
 
