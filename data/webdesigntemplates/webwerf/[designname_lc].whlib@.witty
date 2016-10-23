@@ -12,7 +12,6 @@ PUBLIC OBJECTTYPE [designobjectname] EXTEND WebDesignBase
     RETURN DEFAULT RECORD;
   }
 
-  /*
   UPDATE PUBLIC MACRO PrintErrorPage(INTEGER errorcode, RECORD harescriptinfo, STRING url)
   {
     IF (errorcode = 404)
@@ -20,5 +19,4 @@ PUBLIC OBJECTTYPE [designobjectname] EXTEND WebDesignBase
     ELSE
       WebDesignBase::PrintErrorPage(errorcode, harescriptinfo, url);
   }
-  */
 >;
