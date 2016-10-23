@@ -5,9 +5,8 @@
              xmlns:p="http://www.webhare.net/xmlns/publisher/components"
              xmlns:w="http://www.webhare.net/xmlns/wrd/components">
 
-  <!-- FIXME: namespace
-  <rtdtype namespace="http://www.example.com/rtd/document">
-    <css path="css/rtd.css" />
+  <rtdtype namespace="[domainname]/rtd/document">
+    <css path="shared/rtd.css" />
 
     <blockstyles defaultstyle="NORMAL">
       <textstyle tag="HEADING1" containertag="h1" textstyles="" />
@@ -22,22 +21,19 @@
       <allowtype type="http://www.webhare.net/xmlns/publisher/embedvideo" />
     </widgets>
   </rtdtype>
-  -->
 
   <!-- Global site settings -->
   <apply>
     <to type="all" />
 
-    <!-- FIXME: namespace
-    <rtddoc rtdtype="http://www.example.com/rtd/document" />
-    -->
+    <rtddoc rtdtype="[domainname]/rtd/document" />
 
     <!-- Setup default webdesign -->
     <webdesign designfolder="."
-               witty="src/[designname_lc].witty"
-               library="src/[designname_lc].whlib"
+               witty="[designname_lc].witty"
+               library="[designname_lc].whlib"
                objectname="[designobjectname]"
-               basedependency="src/[designname_lc].es"
+               basedependency="[designname_lc].es"
                maxcontentwidth="960px"
                wittyencoding="HTML-NI"
                async="true"
@@ -88,7 +84,7 @@
        Load components and pages
 
   *********************************************************************** -->
-  <applysiteprofile fullpath="src/pages/home/home.siteprl"/>
+  <applysiteprofile fullpath="pages/home/home.siteprl"/>
 
   <!-- Replaces default photoalbum -->
   <applysiteprofile fullpath="moduleroot::webwerf/data/general/photoalbum.xml" />

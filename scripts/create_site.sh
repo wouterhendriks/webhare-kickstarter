@@ -129,7 +129,7 @@ function runsetupscript()
   wh softreset # is needed because the script expects an already initialized webhare_kickstarter module, would be nice if the WH script could take care of this
 
   printStatus 'Asking WebHare to run the webdesign script'
-  wh run "${projectDirectory}/scripts/setup_new_webdesign.whscr" "${projectTitle}" "$FOLDER_NAME" "$TEMPLATETAG"
+  wh run "${projectDirectory}/scripts/setup_new_webdesign.whscr" "${projectTitle}" "$FOLDER_NAME" "$TEMPLATETAG" "${projectDirectory}"
 
   wh sitemgr zip "${projectTitle}"
 }

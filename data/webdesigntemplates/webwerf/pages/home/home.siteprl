@@ -9,7 +9,6 @@
        Homepage
 
   *********************************************************************** -->
-  <!-- FIXME: namespace
   <contenttype namespace="http://www.example.com/filetype/home"></contenttype>
   <filetype typedef="http://www.example.com/filetype/home"
             title="Homepage"
@@ -26,6 +25,5 @@
     <bodyrenderer library="home.whlib" objectname="homepage" />
     <setobjecteditor name="publisher:propertydialog" />
   </apply>
-  -->
 
 </siteprofile>

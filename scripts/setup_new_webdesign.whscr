@@ -1,8 +1,10 @@
 <?wh
 LOADLIB "wh::filetypes/csv.whlib";
+LOADLIB "wh::internet/urls.whlib";
 LOADLIB "wh::os.whlib";
 LOADLIB "wh::files.whlib";
 LOADLIB "module::publisher/contenttypes.whlib";
+LOADLIB "module::publisher/internal/siteprofiles/compiler.whlib";
 LOADLIB "module::publisher/internal/siteprofiles/reader.whlib";
 LOADLIB "module::publisher/siteapi.whlib";
 LOADLIB "module::system/database.whlib";
@@ -17,10 +19,41 @@ RECORD args := ParseArguments(GetConsoleArguments(),
                               [[ name := "title", type := "param" ]
                               ,[ name := "name", type := "param" ]
                               ,[ name := "templatetag", type := "param" ]
+                              ,[ name := "projectdir", type := "param" ]
                               ]);
 
-IF (args.title = "" OR args.name = "" OR args.templatetag = "")
-  Abort('Usage: runscript setup_new_webdesign.whscr "Title" "Name" "Template tag"');
+IF (args.title = "" OR args.name = "" OR args.templatetag = "" OR args.projectdir = "")
+  Abort('Usage: runscript setup_new_webdesign.whscr "Title" "Name" "Template tag" "Project directory');
+
+IF (Right(args.projectdir, 1) != "/")
+  args.projectdir := args.projectdir || "/";
+
+// get URL
+Print("\nPlease enter domain name, including 'www' (www.example.com): ");
+
+STRING domain_name;
+WHILE (domain_name = "")
+{
+  STRING get_domain_name := ReadLineFrom(0, 1000, TRUE);
+
+  IF (get_domain_name = "")
+  {
+    Print("\nDomain name is required. Try again: ");
+    CONTINUE;
+  }
+
+  IF (Left(get_domain_name, 4) != 'www.' OR NOT IsValidPlainHTTPURL('http://' || get_domain_name))
+  {
+    Print("\nInvalid domain name. Try again: ");
+    CONTINUE;
+  }
+
+  domain_name := get_domain_name;
+
+  BREAK;
+}
+
+Print("Using domain name: '" || domain_name || "'\n\n");
 
 STRING template := args.templatetag;
 STRING module := args.name;
@@ -31,6 +64,7 @@ STRING name := args.name;
 RECORD setup := SetupWebDesign(template, module, name
                               ,[ title := title
                                , defaultlanguage := "nl"
+                               , domainname := domain_name
                                ]);
 
 // create new site
@@ -42,7 +76,7 @@ OBJECT sitesettingstype := OpenWHFSType("http://www.webhare.net/xmlns/publisher/
 RECORD sitesettings := sitesettingstype->GetInstanceData(newsite->root);
 sitesettingstype->SetInstanceData(newsite->id, [ sitedesign := module || ":" || name ]);
 
-// try to find localhost:8001 webserver so we can assign this site
+// find localhost:8001 webserver and assign this site
 INTEGER defaultoutputserverid := SELECT AS INTEGER id
                                    FROM system.webservers
                                   WHERE ToUpperCase(baseurl) = 'HTTP://LOCALHOST:8001/';
@@ -50,10 +84,27 @@ INTEGER defaultoutputserverid := SELECT AS INTEGER id
 IF (defaultoutputserverid > 0)
   newsite->SetPrimaryOutput(defaultoutputserverid, "/" || GetSafeFileName(name) || "/");
 
-// create an index file
+// update home siteprl URL
+STRING home_siteprl_path := args.projectdir || "webdesigns/" || name || "/pages/home/home.siteprl";
+INTEGER infile := OpenDiskFile(home_siteprl_path, FALSE);
+
+STRING home_siteprl := ReadFromFile(infile, 1024*1024);
+
+CloseDiskFile(infile);
+
+home_siteprl := Substitute(home_siteprl, "www.example.com", domain_name);
+
+IF (NOT CreateDiskFileFromBlob(home_siteprl_path, FALSE, TRUE, StringToBlob(home_siteprl)))
+  THROW NEW Exception("I/O error updating home site profile");
+
+// recompile site profiles
+RecompileSiteProfiles(0); //FIXME: doesn't seem to work, homepagetype is not available
+
+// create an index home page
+OBJECT homepagetype := OpenWHFSType('http://' || domain_name || "/filetype/home");
 OBJECT homepage := newsite->rootobject->CreateFile([ name := "index.html"
                                                    , title := "Homepage"
-                                                   , type := 5 // HTML file
+                                                   , type := ObjectExists(homepagetype) ? homepagetype->id : 5
                                                    , publish := TRUE
                                                    ]);
 

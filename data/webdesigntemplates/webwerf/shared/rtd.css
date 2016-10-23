@@ -6,5 +6,5 @@ audio, canvas, video { display: inline-block; }
 datalist, template { display:none; }
 
 html {
-  font: 10pt Arial, Sans-Serif;
+  font: 16px Arial, Sans-Serif;
 }

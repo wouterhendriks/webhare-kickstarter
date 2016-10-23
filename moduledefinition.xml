@@ -5,7 +5,9 @@
     <version>0.1</version>
     <description>REPLACEtitleREPLACE</description>
     <author>Webwerf</author>
-    <packaging download="true" />
+    <packaging download="true">
+      <dependency module="webwerf" /> <!-- Contains better general photo album -->
+    </packaging>
   </meta>
 
   <publisher>
