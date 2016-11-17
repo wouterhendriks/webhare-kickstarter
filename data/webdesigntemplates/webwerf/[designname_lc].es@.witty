@@ -7,9 +7,9 @@ import '@webhare-publisher/richcontent/all'; //support rich content (video, imag
 import '@webhare-system/wh/integration'; //activate WebHare features
 
 // main CSS
-require('./[designname_lc].scss');
+import './[designname_lc].scss';
 
-// force a single webpack bundle by (always) loading all pages JavaScript here
+// force a single webpack bundle by (always) loading all pages here
 import './pages/home/home.es';
 
 import * as dompack from 'dompack';

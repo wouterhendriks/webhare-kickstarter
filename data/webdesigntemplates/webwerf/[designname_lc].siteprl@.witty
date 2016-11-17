@@ -5,7 +5,7 @@
              xmlns:p="http://www.webhare.net/xmlns/publisher/components"
              xmlns:w="http://www.webhare.net/xmlns/wrd/components">
 
-  <rtdtype namespace="[domainname]/rtd/document">
+  <rtdtype namespace="http://[domainname]/rtd/document">
     <css path="shared/rtd.css" />
 
     <blockstyles defaultstyle="NORMAL">
@@ -26,7 +26,7 @@
   <apply>
     <to type="all" />
 
-    <rtddoc rtdtype="[domainname]/rtd/document" />
+    <rtddoc rtdtype="http://[domainname]/rtd/document" />
 
     <!-- Setup default webdesign -->
     <webdesign designfolder="."
@@ -67,9 +67,8 @@
     <uploadtypemapping filenamemask="*.doc*" filetype="http://www.webhare.net/xmlns/publisher/msworddownload" mimetypemask="application/msword" />
     <uploadtypemapping filenamemask="*.doc*" filetype="http://www.webhare.net/xmlns/publisher/msworddownload" mimetypemask="application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
 
-    <!-- prevent 404s by automatically creating redirects when changing folder/file names
+    <!-- prevent 404s by automatically creating redirects when changing folder/file names -->
     <urlhistory redirecton404="true" store="true"  />
-    -->
 
     <denyfiletype typedef="*" />
     <allowfiletype typedef="http://www.webhare.net/xmlns/publisher/imagefile" />

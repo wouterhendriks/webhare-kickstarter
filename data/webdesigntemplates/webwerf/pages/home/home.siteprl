@@ -15,7 +15,7 @@
             blobiscontent="false"
             ispublishable="true"
             tolliumicon="tollium:actions/home"
-            isacceptableindex="false"
+            isacceptableindex="true"
             ispublishedassubdir="true"
             needstemplate="true"
             />
