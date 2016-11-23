@@ -1,2 +1,6 @@
+@import 'shared/variables';
 @import 'shared/stylereset';
 @import 'shared/mixins';
+
+// RTD, contains default font settings
+@import 'shared/rtd.css';
