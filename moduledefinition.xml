@@ -2,7 +2,7 @@
 <module xmlns="http://www.webhare.net/xmlns/system/moduledefinition">
 
   <meta>
-    <version>0.1</version>
+    <version>1.0</version>
     <description>REPLACEtitleREPLACE</description>
     <author>Webwerf</author>
     <packaging download="true">
@@ -11,7 +11,6 @@
   </meta>
 
   <publisher>
-    <installsite name="REPLACEtitleREPLACE" storage="REPLACEfoldernameREPLACE.zip" />
     <webdesign name="webwerf" title="Blank NC webdesign" siteprofile="[designname_lc].siteprl" istemplate="true" path="data/webdesigntemplates/webwerf"></webdesign>
   </publisher>
 

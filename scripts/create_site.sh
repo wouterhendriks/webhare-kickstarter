@@ -130,8 +130,6 @@ function runsetupscript()
 
   printStatus 'Asking WebHare to run the webdesign script'
   wh run "${projectDirectory}/scripts/setup_new_webdesign.whscr" "${projectTitle}" "$FOLDER_NAME" "$TEMPLATETAG" "${projectDirectory}"
-
-  wh sitemgr zip "${projectTitle}"
 }
 
 function replacereadme()
@@ -165,9 +163,6 @@ wh noderun npm install
 wh noderun bower install
 # if whcd is unavailable, try:
 # cd "\$(wh getmoduledir ${FOLDER_NAME})webdesigns/${FOLDER_NAME}/"
-
-# Install the site
-wh sitemgr install '${projectTitle}'
 \`\`\`
 EOF
 }
