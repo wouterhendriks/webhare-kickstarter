@@ -134,6 +134,6 @@ Print("\n## ----------------------- Result ----------------------- ##\n\n"
    || "\n"
    || "Important: you probably want to add this to the <webdesign> node in the new moduledefinition:\n"
    || "\n"
-   || '<assetpack entrypoint="webdesigns/' || name || '/src/' || name || '" supportedlanguages="nl" />\n'
+   || '<assetpack entrypoint="webdesigns/' || name || '/' || name || '" supportedlanguages="nl" />\n'
    || "\n"
    || "This should be automated in a future update.\n");
