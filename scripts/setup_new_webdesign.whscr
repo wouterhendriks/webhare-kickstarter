@@ -130,4 +130,10 @@ Print("\n## ----------------------- Result ----------------------- ##\n\n"
    || "whcd " || name || "\n"
    || "\n"
    || "Or to the newly created webdesign folder:\n"
-   || "whcd " || name || "/webdesigns/" || name || "\n");
+   || "whcd " || name || "/webdesigns/" || name || "\n"
+   || "\n"
+   || "Important: you probably want to add this to the <webdesign> node in the new moduledefinition:\n"
+   || "\n"
+   || '<assetpack entrypoint="webdesigns/' || name || '/src/' || name || '" supportedlanguages="nl" />\n'
+   || "\n"
+   || "This should be automated in a future update.\n");
