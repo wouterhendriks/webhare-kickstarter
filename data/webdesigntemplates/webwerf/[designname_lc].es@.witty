@@ -1,17 +1,16 @@
 [! Careful here, any subscript operators that should still be present in the
    final javascript file must be double escaped: [[ (but not ]])
 
-!]// const whBase = require('@webhare-system/compat/base');
-
-import '@webhare-publisher/richcontent/all'; //support rich content (video, images)
+!]import '@webhare-publisher/richcontent/all'; //support rich content (video, images)
 import '@webhare-system/wh/integration'; //activate WebHare features
 
 // main CSS
 import './[designname_lc].scss';
 
-// force a single webpack bundle by (always) loading all pages here
+// pages
 import './pages/home/home.es';
 
+// dompack
 import * as dompack from 'dompack';
 import { qS, qSA } from 'dompack/extra/qsa';
 

@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <siteprofile xmlns="http://www.webhare.net/xmlns/publisher/siteprofile"
              xmlns:t="http://www.webhare.net/xmlns/tollium/screens"
-             xmlns:m="http://www.webhare.net/xmlns/system/moduledefinition"
-             xmlns:p="http://www.webhare.net/xmlns/publisher/components"
-             xmlns:w="http://www.webhare.net/xmlns/wrd/components">
+             >
 
   <rtdtype namespace="http://[domainname]/rtd/document">
     <css path="shared/rtd.css" />
@@ -46,9 +44,6 @@
     <!-- Republish all files upon every change -->
     <republish folder="/" indexonly="false" recursive="true" />
 
-    <!-- Allow RTD documents -->
-    <allowfiletype typedef="http://www.webhare.net/xmlns/publisher/richdocumentfile" />
-
     <enabledrafts />
 
     <!-- Disable the legacy site settings -->
@@ -81,12 +76,13 @@
 
   <!-- ***********************************************************************
 
-       Load components and pages
+       Load pages and components
 
   *********************************************************************** -->
-  <applysiteprofile fullpath="pages/home/home.siteprl"/>
-
   <!-- Replaces default photoalbum -->
   <applysiteprofile fullpath="moduleroot::webwerf/data/general/photoalbum.xml" />
+
+  <!-- Load pages and components -->
+  <applysiteprofile fullpath="pages/home/home.siteprl" />
 
 </siteprofile>
