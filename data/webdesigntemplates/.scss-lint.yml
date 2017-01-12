@@ -1,0 +1,22 @@
+linters:
+  PropertySortOrder:
+    enabled: false
+  ColorKeyword:
+    enabled: false
+  ColorVariable:
+    enabled: false
+  Comment:
+    enabled: false
+  SelectorFormat:
+    enabled: true
+    convention: hyphenated_BEM
+  QualifyingElement:
+    enabled: false
+  ImportantRule:
+    enabled: false
+  NestingDepth:
+    enabled: false
+  DeclarationOrder:
+    enabled: false
+  IdSelector:
+    enabled: false
