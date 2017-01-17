@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<siteprofile xmlns="http://www.webhare.net/xmlns/publisher/siteprofile"
-             xmlns:t="http://www.webhare.net/xmlns/tollium/screens"
-             >
+<siteprofile xmlns="http://www.webhare.net/xmlns/publisher/siteprofile">
 
   <rtdtype namespace="http://[domainname]/rtd/document">
     <css path="shared/rtd.css" />
@@ -20,7 +18,6 @@
     </widgets>
   </rtdtype>
 
-  <!-- Global site settings -->
   <apply>
     <to type="all" />
 
@@ -38,21 +35,16 @@
                async="true"
                />
 
-    <!-- Set site language -->
     <sitelanguage lang="[defaultlanguage]" />
 
-    <!-- Republish all files upon every change -->
     <republish folder="/" indexonly="false" recursive="true" />
 
     <enabledrafts />
 
-    <!-- Disable the legacy site settings -->
     <disablelegacysitesettings notemplateprofile="true" />
 
-    <!-- Enable webpack -->
-    <webpackintegration xmlns="http://www.webhare.net/xmlns/webpack" />
+    <formintegration xmlns="http://www.webhare.net/xmlns/publisher" />
 
-    <!-- disable keywords field -->
     <baseproperties keywords="false" />
 
     <!--
@@ -63,7 +55,6 @@
     <uploadtypemapping filenamemask="*.doc*" filetype="http://www.webhare.net/xmlns/publisher/msworddownload" mimetypemask="application/msword" />
     <uploadtypemapping filenamemask="*.doc*" filetype="http://www.webhare.net/xmlns/publisher/msworddownload" mimetypemask="application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
 
-    <!-- prevent 404s by automatically creating redirects when changing folder/file names -->
     <urlhistory redirecton404="true" store="true"  />
 
     <denyfiletype typedef="*" />
