@@ -98,7 +98,7 @@ IF (NOT CreateDiskFileFromBlob(home_siteprl_path, FALSE, TRUE, StringToBlob(home
   THROW NEW Exception("I/O error updating home site profile");
 
 // recompile site profiles
-RecompileSiteProfiles(0); //FIXME: doesn't seem to work, homepagetype is not available
+RecompileSiteProfiles(); //FIXME: doesn't seem to work, homepagetype is not available
 
 // create an index home page
 OBJECT homepagetype := OpenWHFSType('http://' || domain_name || "/filetype/home");
