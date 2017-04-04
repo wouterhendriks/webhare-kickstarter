@@ -9,7 +9,11 @@ PUBLIC OBJECTTYPE [designobjectname] EXTEND WebDesignBase
 <
   UPDATE PUBLIC RECORD FUNCTION GetPageConfig()
   {
-    RETURN DEFAULT RECORD;
+    RECORD pagesettings := this->targetobject->GetInstanceData("http://[domainname]/pagesettings");
+    this->pagetitle := pagesettings.seotitle ?? this->pagetitle;
+    this->pagedescription := pagesettings.seodescription ?? this->pagedescription;
+
+    RETURN [[ ogimageurl := this->GetAbsUrl(this->designrooturl || 'img/fbshare.png') ];
   }
 
   UPDATE PUBLIC MACRO PrintErrorPage(INTEGER errorcode, RECORD harescriptinfo, STRING url)
