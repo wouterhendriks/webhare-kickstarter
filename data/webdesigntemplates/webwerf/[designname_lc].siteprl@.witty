@@ -29,7 +29,6 @@
                library="[designname_lc].whlib"
                objectname="[designobjectname]"
                assetpack="[designname_lc]:[designname_lc]"
-               basedependency="[designname_lc].es"
                maxcontentwidth="960px"
                wittyencoding="HTML-NI"
                async="true"
