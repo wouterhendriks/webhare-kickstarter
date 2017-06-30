@@ -142,12 +142,6 @@ function replacereadme()
   cat <<EOF > "${projectDirectory}/README.md"
 # ${projectTitle}
 
-## URLs
-Your live/test/acceptance URLs here
-
-## Backend
-Your backend URLs here
-
 ## Installation
 \`\`\`
 #!bash
@@ -157,12 +151,8 @@ git clone git@gitlab.com:webwerf/xxxxxxxxxxxxx.git "\$(wh getdatadir)installedmo
 # Make sure WebHare knows about this module
 wh softreset
 
-## Satisfy the module dependencies
-whcd ${FOLDER_NAME}/webdesigns/${FOLDER_NAME}/
-wh noderun npm install
-wh noderun bower install
-# if whcd is unavailable, try:
-# cd "\$(wh getmoduledir ${FOLDER_NAME})webdesigns/${FOLDER_NAME}/"
+# Satisfy the module dependencies
+wh fixmodules ${FOLDER_NAME}
 \`\`\`
 EOF
 }

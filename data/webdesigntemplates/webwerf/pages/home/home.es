@@ -1,3 +1,5 @@
+require('./home.scss');
+
 import * as dompack from "dompack";
 
 dompack.onDomReady(() => {
