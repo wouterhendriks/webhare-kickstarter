@@ -23,7 +23,6 @@
 
     <rtddoc rtdtype="http://[domainname]/rtd/document" />
 
-    <!-- Setup default webdesign -->
     <webdesign designfolder="."
                witty="[designname_lc].witty"
                library="[designname_lc].whlib"
@@ -50,6 +49,7 @@
 
     <!--
     <analytics xmlns="http://www.webhare.net/xmlns/socialite" type="universal" code="UA-XXXXXXX-X" />
+    <analytics xmlns="http://www.webhare.net/xmlns/socialite" type="tagmanager" code="GTM-XXXXXXX" />
     -->
 
     <!-- in this site a Word document is not a publishable type, so treat it as downloadable -->
@@ -64,6 +64,10 @@
     <allowfiletype typedef="http://www.webhare.net/xmlns/publisher/externallink" />
     <allowfiletype typedef="http://www.webhare.net/xmlns/publisher/internallink" />
     <allowfiletype typedef="http://www.webhare.net/xmlns/publisher/richdocumentfile" />
+
+    <!-- Optionally disable default photoalbum because it's rather old
+    <denyfoldertype typedef="http://www.webhare.net/xmlns/publisher/photoalbum" />
+     -->
   </apply>
 
   <!-- ***********************************************************************
@@ -100,9 +104,6 @@
        Load pages and components
 
   *********************************************************************** -->
-  <!-- Replaces default photoalbum -->
-  <applysiteprofile fullpath="moduleroot::webwerf/data/general/photoalbum.xml" />
-
   <!-- Load pages and components -->
   <applysiteprofile fullpath="pages/home/home.siteprl" />
 
