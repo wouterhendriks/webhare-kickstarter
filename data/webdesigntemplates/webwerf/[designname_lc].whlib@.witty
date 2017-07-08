@@ -16,6 +16,18 @@ PUBLIC OBJECTTYPE [designobjectname] EXTEND WebDesignBase
     RETURN [[ ogimageurl := this->GetAbsUrl(this->designrooturl || 'img/fbshare.png') ];
   }
 
+  PUBLIC STRING FUNCTION GetImageCSS(RECORD image, RECORD imagesettings)
+  {
+    IF (NOT RecordExists(image))
+      RETURN "";
+
+    RECORD wrapped := WrapCachedImage(image, imagesettings);
+
+    STRING pos := wrapped.refpoint_backgroundposition ?? 'center';
+
+    RETURN `background-size: cover; background-image: url(${wrapped.link}); background-position: ${pos};`;
+  }
+
   UPDATE PUBLIC MACRO PrintErrorPage(INTEGER errorcode, RECORD harescriptinfo, STRING url)
   {
     IF (errorcode = 404)
