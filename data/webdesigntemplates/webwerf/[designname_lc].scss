@@ -1,6 +1,8 @@
-@import 'shared/variables';
+@import 'shared/helper';
 @import 'shared/stylereset';
-@import 'shared/mixins';
+
+// vendor
+// ...
 
 // RTD, contains default font settings, cannot be SCSS
 @import 'shared/rtd.css';

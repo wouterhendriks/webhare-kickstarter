@@ -95,7 +95,7 @@
   </tabsextension>
 
   <apply>
-    <to type="file" />
+    <to type="file" typeneedstemplate="true" />
     <extendproperties extension=".pagesettings" contenttype="http://[domainname]/pagesettings" />
   </apply>
 

@@ -3,7 +3,6 @@ LOADLIB "wh::filetypes/csv.whlib";
 LOADLIB "wh::internet/urls.whlib";
 LOADLIB "wh::os.whlib";
 LOADLIB "wh::files.whlib";
-LOADLIB "module::publisher/contenttypes.whlib";
 LOADLIB "module::publisher/internal/siteprofiles/compiler.whlib";
 LOADLIB "module::publisher/internal/siteprofiles/reader.whlib";
 LOADLIB "module::publisher/siteapi.whlib";
@@ -29,7 +28,7 @@ IF (Right(args.projectdir, 1) != "/")
   args.projectdir := args.projectdir || "/";
 
 // get URL
-Print("\nPlease enter domain name, including 'www' (www.example.com): ");
+Print("\nPlease enter domain name (main domain including 'www' (www.example.com) or a sub domain (test.example.com): ");
 
 STRING domain_name;
 WHILE (domain_name = "")
@@ -42,7 +41,7 @@ WHILE (domain_name = "")
     CONTINUE;
   }
 
-  IF (Left(get_domain_name, 4) != 'www.' OR NOT IsValidPlainHTTPURL('http://' || get_domain_name))
+  IF (NOT IsValidPlainHTTPURL('http://' || get_domain_name))
   {
     Print("\nInvalid domain name. Try again: ");
     CONTINUE;

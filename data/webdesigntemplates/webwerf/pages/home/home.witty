@@ -1,1 +1,3 @@
-Hello homepage world!
+<div class="p-home">
+  Hello homepage world!
+</div>

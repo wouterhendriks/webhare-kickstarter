@@ -1,18 +1,16 @@
 [! Careful here, any subscript operators that should still be present in the
    final javascript file must be double escaped: [[ (but not ]])
 
-!]import '@webhare-publisher/richcontent/all'; //support rich content (video, images)
+!]// WebHare
+import '@webhare-publisher/richcontent/all'; //support rich content (video, images)
 import '@webhare-system/wh/integration'; //activate WebHare features
+import * as dompack from 'dompack';
 
 // main CSS
 import './[designname_lc].scss';
 
 // pages
 import './pages/home/home.es';
-
-// dompack
-import * as dompack from 'dompack';
-import { qS, qSA } from 'dompack/extra/qsa';
 
 dompack.onDomReady(() => {
 
