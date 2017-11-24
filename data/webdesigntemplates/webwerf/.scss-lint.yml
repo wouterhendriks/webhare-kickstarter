@@ -20,3 +20,7 @@ linters:
     enabled: false
   IdSelector:
     enabled: false
+  LeadingZero:
+    enabled: false
+  HexNotation:
+    enabled: false
