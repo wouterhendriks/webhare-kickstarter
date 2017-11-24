@@ -1,5 +1,4 @@
 [component htmlhead]
-  [embed ascii]
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   [! Open Graph !]
@@ -15,9 +14,6 @@
     [contents]
   </main>
 [/component]
-
-[rawcomponent ascii]
-[/rawcomponent]
 
 [component 404]
   <h1>Niet gevonden</h1>

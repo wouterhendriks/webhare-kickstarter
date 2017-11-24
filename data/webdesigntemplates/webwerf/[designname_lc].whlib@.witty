@@ -24,9 +24,10 @@ PUBLIC OBJECTTYPE [designobjectname] EXTEND WebDesignBase
 
     RECORD wrapped := WrapCachedImage(image, imagesettings);
 
-    STRING pos := wrapped.refpoint_backgroundposition ?? 'center';
-
-    RETURN `background-size: cover; background-image: url(${wrapped.link}); background-position: ${pos};`;
+    RETURN `background-size: cover;
+            background-image: url(${wrapped.link});
+            background-position: ${wrapped.refpoint_backgroundposition ?? 'center'};
+            background-color: ${wrapped.dominantcolor}`;
   }
 
   UPDATE PUBLIC MACRO PrintErrorPage(INTEGER errorcode, RECORD harescriptinfo, STRING url)

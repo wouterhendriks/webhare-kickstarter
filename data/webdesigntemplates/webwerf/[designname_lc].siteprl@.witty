@@ -37,8 +37,6 @@
 
     <republish folder="/" indexonly="false" recursive="true" />
 
-    <enabledrafts />
-
     <disablelegacysitesettings notemplateprofile="true" />
 
     <formintegration xmlns="http://www.webhare.net/xmlns/publisher" />
@@ -55,8 +53,6 @@
     <!-- in this site a Word document is not a publishable type, so treat it as downloadable -->
     <uploadtypemapping filenamemask="*.doc*" filetype="http://www.webhare.net/xmlns/publisher/msworddownload" mimetypemask="application/msword" />
     <uploadtypemapping filenamemask="*.doc*" filetype="http://www.webhare.net/xmlns/publisher/msworddownload" mimetypemask="application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
-
-    <urlhistory redirecton404="true" store="true"  />
 
     <denyfiletype typedef="*" />
     <allowfiletype typedef="http://www.webhare.net/xmlns/publisher/imagefile" />
@@ -104,7 +100,6 @@
        Load pages and components
 
   *********************************************************************** -->
-  <!-- Load pages and components -->
   <applysiteprofile fullpath="pages/home/home.siteprl" />
 
 </siteprofile>
