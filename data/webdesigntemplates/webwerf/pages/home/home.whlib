@@ -1,7 +1,7 @@
 <?wh
 LOADLIB "wh::witty.whlib";
-LOADLIB "module::publisher/publisher.whlib";
-LOADLIB "module::publisher/webdesign.whlib";
+LOADLIB "mod::publisher/lib/publisher.whlib";
+LOADLIB "mod::publisher/lib/webdesign.whlib";
 
 PUBLIC OBJECTTYPE HomePage EXTEND StaticPageBase
 <
@@ -14,7 +14,6 @@ PUBLIC OBJECTTYPE HomePage EXTEND StaticPageBase
 
   UPDATE PUBLIC MACRO RunBody(OBJECT webdesign)
   {
-    OBJECT wittylib := LoadWittyLibrary(this->pagefolder || "home.witty", "HTML-NI");
-    wittylib->Run(this->wittydata);
+    LoadWittyLibrary(Resolve("home.witty"), "HTML-NI")->Run(this->wittydata);
   }
 >;

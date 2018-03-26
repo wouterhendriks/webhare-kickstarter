@@ -28,7 +28,7 @@ IF (Right(args.projectdir, 1) != "/")
   args.projectdir := args.projectdir || "/";
 
 // get URL
-Print("\nPlease enter domain name (main domain including 'www' (www.example.com) or a sub domain (test.example.com): ");
+Print("\nPlease enter domain name (example.com): ");
 
 STRING domain_name;
 WHILE (domain_name = "")
@@ -38,12 +38,6 @@ WHILE (domain_name = "")
   IF (get_domain_name = "")
   {
     Print("\nDomain name is required. Try again: ");
-    CONTINUE;
-  }
-
-  IF (NOT IsValidPlainHTTPURL('http://' || get_domain_name))
-  {
-    Print("\nInvalid domain name. Try again: ");
     CONTINUE;
   }
 

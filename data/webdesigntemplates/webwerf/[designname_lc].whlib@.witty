@@ -3,8 +3,8 @@
 
 do not add a newline between comment close and the <?wh tag !]<?wh
 LOADLIB "wh::witty.whlib";
-LOADLIB "module::publisher/webdesign.whlib";
-LOADLIB "module::system/cache.whlib";
+LOADLIB "mod::publisher/lib/webdesign.whlib";
+LOADLIB "mod::system/lib/cache.whlib";
 
 PUBLIC OBJECTTYPE [designobjectname] EXTEND WebDesignBase
 <
