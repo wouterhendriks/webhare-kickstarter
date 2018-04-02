@@ -39,7 +39,10 @@
 
     <disablelegacysitesettings notemplateprofile="true" />
 
+    <!-- Allow forms?
     <formintegration xmlns="http://www.webhare.net/xmlns/publisher" />
+    <allowfiletype typedef="http://www.webhare.net/xmlns/publisher/formwebtool" />
+    -->
 
     <baseproperties keywords="false" description="false" />
     <robots xmlns="http://www.webhare.net/xmlns/consilio"/>
@@ -50,7 +53,7 @@
     <analytics xmlns="http://www.webhare.net/xmlns/socialite" type="tagmanager" code="GTM-XXXXXXX" />
     -->
 
-    <!-- in this site a Word document is not a publishable type, so treat it as downloadable -->
+    <!-- Treat Word document as downloadable -->
     <uploadtypemapping filenamemask="*.doc*" filetype="http://www.webhare.net/xmlns/publisher/msworddownload" mimetypemask="application/msword" />
     <uploadtypemapping filenamemask="*.doc*" filetype="http://www.webhare.net/xmlns/publisher/msworddownload" mimetypemask="application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
 
@@ -61,9 +64,8 @@
     <allowfiletype typedef="http://www.webhare.net/xmlns/publisher/internallink" />
     <allowfiletype typedef="http://www.webhare.net/xmlns/publisher/richdocumentfile" />
 
-    <!-- Optionally disable default photoalbum because it's rather old
+    <!-- Disable default photoalbum because it's rather old -->
     <denyfoldertype typedef="http://www.webhare.net/xmlns/publisher/photoalbum" />
-     -->
   </apply>
 
   <!-- ***********************************************************************
