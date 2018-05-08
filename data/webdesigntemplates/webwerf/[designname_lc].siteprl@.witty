@@ -39,10 +39,7 @@
 
     <disablelegacysitesettings notemplateprofile="true" />
 
-    <!-- Allow forms?
-    <formintegration xmlns="http://www.webhare.net/xmlns/publisher" />
-    <allowfiletype typedef="http://www.webhare.net/xmlns/publisher/formwebtool" />
-    -->
+    <formintegration />
 
     <baseproperties keywords="false" description="false" />
     <robots xmlns="http://www.webhare.net/xmlns/consilio"/>
@@ -63,6 +60,7 @@
     <allowfiletype typedef="http://www.webhare.net/xmlns/publisher/externallink" />
     <allowfiletype typedef="http://www.webhare.net/xmlns/publisher/internallink" />
     <allowfiletype typedef="http://www.webhare.net/xmlns/publisher/richdocumentfile" />
+    <allowfiletype typedef="http://www.webhare.net/xmlns/publisher/formwebtool" />
 
     <!-- Disable default photoalbum because it's rather old -->
     <denyfoldertype typedef="http://www.webhare.net/xmlns/publisher/photoalbum" />

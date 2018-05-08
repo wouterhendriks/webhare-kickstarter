@@ -1,10 +1,11 @@
 [! Careful here, any subscript operators that should still be present in the
    final javascript file must be double escaped: [[ (but not ]])
 
-!]// WebHare
-import '@webhare-publisher/richcontent/all'; //support rich content (video, images)
-import '@webhare-system/wh/integration'; //activate WebHare features
+!]
+import '@mod-publisher/js/richcontent/all'; //support rich content (video, images)
+import '@mod-system/js/wh/integration'; //activate WebHare features
 import * as dompack from 'dompack';
+import { openLinksInNewWindow } from '@mod-publisher/js/linkhandler';
 
 // main CSS
 import './[designname_lc].scss';
@@ -13,5 +14,5 @@ import './[designname_lc].scss';
 import './pages/home/home.es';
 
 dompack.onDomReady(() => {
-
+  openLinksInNewWindow();
 });
