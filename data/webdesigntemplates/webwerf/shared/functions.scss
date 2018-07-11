@@ -1,0 +1,30 @@
+@mixin font-size($size-value, $line: null) {
+  font-size: $size-value + px;
+  @if ($line) {
+    line-height: $line + px;
+  } @else {
+    line-height: 100%;
+  }
+}
+
+@mixin link-no-underline {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+@mixin mw($maxwidth) {
+  @media screen and (max-width: $maxwidth + px) {
+    @content;
+  }
+}
+
+@mixin hover {
+  html.non-touch & {
+    &:hover {
+      @content;
+    }
+  }
+}

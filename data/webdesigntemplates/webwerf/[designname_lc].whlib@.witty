@@ -2,14 +2,19 @@
    final library file must be double escaped: [[ (but not ]])
 
 do not add a newline between comment close and the <?wh tag !]<?wh
+LOADLIB "wh::datetime.whlib";
 LOADLIB "wh::witty.whlib";
 LOADLIB "mod::publisher/lib/webdesign.whlib";
 LOADLIB "mod::system/lib/cache.whlib";
+LOADLIB "mod::system/lib/configure.whlib";
 
 PUBLIC OBJECTTYPE [designobjectname] EXTEND WebDesignBase
 <
   UPDATE PUBLIC RECORD FUNCTION GetPageConfig()
   {
+    IF (GetDTAPStage() != "production")
+      this->assetcachebuster := ToString(GetUnixTimestamp(GetCurrentDateTime()));
+
     RECORD pagesettings := this->targetobject->GetInstanceData("http://[domainname]/pagesettings");
     this->pagetitle := pagesettings.seotitle ?? this->pagetitle;
     this->pagedescription := pagesettings.seodescription ?? this->pagedescription;
