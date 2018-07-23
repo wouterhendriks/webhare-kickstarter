@@ -1,5 +1,6 @@
 import './forms.scss';
 
+import * as dompack from 'dompack';
 import * as forms from '@mod-publisher/js/forms';
 
 forms.setup( { validate: true } );

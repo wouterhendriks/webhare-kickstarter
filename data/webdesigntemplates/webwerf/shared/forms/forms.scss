@@ -9,6 +9,12 @@
     min-width: 240px; //Set a minimum width for form labels
   }
 
+  &__fieldgroup {
+    &--required label::after {
+      content: '*';
+    }
+  }
+
   &__imgedit {
     outline: none;
 
