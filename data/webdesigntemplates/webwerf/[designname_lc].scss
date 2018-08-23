@@ -1,6 +1,4 @@
-@import 'shared/vars';
-@import 'shared/functions';
-@import 'shared/stylereset';
-
-// RTD, contains default font settings, cannot be SCSS
-@import 'shared/rtd.css';
+@import 'shared/css/vars';
+@import 'shared/css/functions';
+@import 'shared/css/stylereset';
+@import 'shared/css/typography';

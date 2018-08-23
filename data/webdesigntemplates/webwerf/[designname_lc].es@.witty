@@ -1,8 +1,7 @@
 [! Careful here, any subscript operators that should still be present in the
    final javascript file must be double escaped: [[ (but not ]])
 
-!]
-import '@mod-publisher/js/richcontent/all'; //support rich content (video, images)
+!]import '@mod-publisher/js/richcontent/all'; //support rich content (video, images)
 import '@mod-system/js/wh/integration'; //activate WebHare features
 import * as dompack from 'dompack';
 import { openLinksInNewWindow } from '@mod-publisher/js/linkhandler';
@@ -11,7 +10,9 @@ import './shared/forms/forms';
 import './[designname_lc].scss';
 
 // pages
-import './pages/home/home.es';
+import './pages/home/home';
+
+openLinksInNewWindow();
 
 let touchsupport = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0)
 if (!touchsupport){ // browser doesn't support touch
@@ -19,5 +20,4 @@ if (!touchsupport){ // browser doesn't support touch
 }
 
 dompack.onDomReady(() => {
-  openLinksInNewWindow();
 });

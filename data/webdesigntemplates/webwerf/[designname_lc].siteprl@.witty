@@ -2,7 +2,7 @@
 <siteprofile xmlns="http://www.webhare.net/xmlns/publisher/siteprofile">
 
   <rtdtype namespace="http://[domainname]/rtd/document">
-    <css path="shared/rtd.css" />
+    <css path="shared/css/rtd.css" />
 
     <blockstyles defaultstyle="NORMAL">
       <textstyle tag="HEADING1" containertag="h1" textstyles="" />

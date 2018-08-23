@@ -1,0 +1,67 @@
+/* General RTD styling, not used by the site */
+h1,
+h2,
+h3,
+h4 {
+  line-height: 100%;
+  font-weight: 700;
+  margin: 0 0 10px;
+}
+
+h1 {
+  font-size: 32px;
+  margin: 0 0 20px;
+}
+
+h2 {
+  font-size: 26px;
+  margin: 0 0 15px;
+}
+
+h3 {
+  font-size: 20px;
+  margin: 0 0 12px;
+}
+
+h4 {
+  font-size: 18px;
+  margin: 0 0 10px;
+}
+
+p {
+  font-size: 14px;
+  line-height: 120%;
+  margin: 0 0 10px;
+}
+
+a {
+  color: #003366;
+  text-decoration: underline;
+  transition: color .3s;
+}
+
+a:hover {
+  color: #9f7742;
+}
+
+hr {
+  margin: 15px 0;
+  border: 1px solid #999;
+}
+
+.wh-rtd-editor {
+  font-family: Arial, Sans-Serif;
+  padding: 3px;
+}
+
+.wh-rtd-editor .embeddedobject {
+  padding: 15px 15px 30px;
+}
+
+.wh-rtd-editor .embeddedobject__type {
+  position: absolute;
+  bottom: 10px;
+  right: 6px;
+  font-size: 140%;
+  font-style: italic;
+}
