@@ -9,6 +9,10 @@
     min-width: 240px; //Set a minimum width for form labels
   }
 
+  &__richtext {
+    width: 100%;
+  }
+
   &__fieldgroup {
     &--required label::after {
       content: '*';
