@@ -1,18 +1,20 @@
 [! Careful here, any subscript operators that should still be present in the
    final javascript file must be double escaped: [[ (but not ]])
 
-!]import '@mod-publisher/js/richcontent/all'; //support rich content (video, images)
-import '@mod-system/js/wh/integration'; //activate WebHare features
-import * as dompack from 'dompack';
-import { openLinksInNewWindow } from '@mod-publisher/js/linkhandler';
+!]import * as dompack from 'dompack';
+import '@mod-system/js/wh/integration';
+import 'dompack/browserfix/reset.css';
+
 import './shared/forms/forms';
+import './shared/rtd/rtd';
 
 import './[designname_lc].scss';
 
+import { openLinksInNewWindow } from '@mod-publisher/js/linkhandler';
+openLinksInNewWindow();
+
 // pages
 import './pages/home/home';
-
-openLinksInNewWindow();
 
 let touchsupport = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0)
 if (!touchsupport){ // browser doesn't support touch

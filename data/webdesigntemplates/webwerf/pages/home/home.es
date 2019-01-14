@@ -1,4 +1,4 @@
-require('./home.scss');
+import './home.scss';
 
 import * as dompack from "dompack";
 

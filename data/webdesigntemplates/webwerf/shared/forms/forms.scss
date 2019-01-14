@@ -18,56 +18,6 @@
       content: '*';
     }
   }
-
-  &__imgedit {
-    outline: none;
-
-    .wh-form__imgeditholder {
-      display: inline-block;
-      position: relative;
-      border: 1px solid black;
-      width: 100px;
-      height: 100px;
-
-      &::before {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        visibility: visible;
-        font-size: 24px;
-        content: '\f03e';
-        font-family: FontAwesome;
-        height: auto;
-      }
-    }
-
-    &--hasimage {
-      .wh-form__imgeditholder {
-        width: 250px;
-        height: 250px;
-
-        &::before {
-          display: none;
-        }
-      }
-    }
-  }
-
-  &__imgeditimg {
-    width: 100%;
-    height: 100%;
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-
-  &__imgeditdelete::after {
-    color: #d00;
-    content: 'Afbeelding verwijderen';
-    display: block;
-    font-size: .8em;
-    cursor: pointer;
-  }
 }
 
 @media (max-width: 550px) { //Below 550px labels won't fix next to their fields

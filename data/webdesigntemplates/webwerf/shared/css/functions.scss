@@ -1,9 +1,22 @@
-@mixin font-size($size-value, $line: null) {
+@mixin font-size($size-value, $line: null, $apply-mobile-factor: false) {
   font-size: $size-value + px;
+
   @if ($line) {
     line-height: $line + px;
   } @else {
     line-height: 100%;
+  }
+
+  @if ($apply-mobile-factor == true) {
+    $mob-factor: 0.55;
+
+    @media (max-width: map-get($breakpoints, sm)) {
+      font-size: ($size-value * $mob-factor) + px;
+
+      @if ($line) {
+        line-height: ($line * $mob-factor) + px;
+      }
+    }
   }
 }
 
@@ -26,5 +39,49 @@
     &:hover {
       @content;
     }
+  }
+}
+
+@function get-width-by-grid-cols($nrcols, $addgutter: false) {
+  $width: ($nrcols * $grid-column-width) + (($nrcols - 1) * $grid-gutter-width);
+
+  @if ($addgutter == true) {
+    $width: $width + $grid-gutter-width;
+  }
+
+  @return $width;
+}
+
+@mixin bp-grid-cols($nrcols, $addgutter: false, $max-width: false, $add-margin-auto: true, $add-padding-smaller-screen: true) {
+  @if ($add-margin-auto == true) {
+    margin: 0 auto;
+  }
+
+  @if ($max-width == true) {
+    width: 100%;
+    max-width: get-width-by-grid-cols($nrcols);
+  } @else {
+    width: get-width-by-grid-cols($nrcols);
+  }
+
+  @media screen and (max-width: get-width-by-grid-cols($nrcols)) {
+    @content;
+
+    @if ($add-padding-smaller-screen == true) {
+      padding-left: 25px;
+      padding-right: 25px;
+    }
+  }
+}
+
+@mixin textinputfields() {
+  input[type="text"],
+  input[type="email"],
+  input[type="url"],
+  input[type="date"],
+  input[type="search"],
+  input[type="number"],
+  textarea {
+    @content;
   }
 }

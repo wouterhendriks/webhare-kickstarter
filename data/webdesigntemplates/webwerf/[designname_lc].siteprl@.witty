@@ -1,27 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <siteprofile xmlns="http://www.webhare.net/xmlns/publisher/siteprofile">
 
-  <rtdtype namespace="http://[domainname]/rtd/document">
-    <css path="shared/css/rtd.css" />
-
-    <blockstyles defaultstyle="NORMAL">
-      <textstyle tag="HEADING1" containertag="h1" textstyles="" />
-      <textstyle tag="HEADING2" containertag="h2" textstyles="" />
-      <textstyle tag="HEADING3" containertag="h3" textstyles="" />
-      <textstyle tag="NORMAL" textstyles="b i a-href img sup sub strike" />
-      <textstyle tag="UNORDERED" containertag="ul" textstyles="b i a-href sup sub strike" />
-      <textstyle tag="ORDERED" containertag="ol" textstyles="b i a-href sup sub strike" />
-      <tablestyle tag="TABLE" />
-    </blockstyles>
-    <widgets>
-      <allowtype type="http://www.webhare.net/xmlns/publisher/embedvideo" />
-    </widgets>
-  </rtdtype>
-
   <apply>
     <to type="all" />
-
-    <rtddoc rtdtype="http://[domainname]/rtd/document" />
 
     <webdesign designfolder="."
                witty="[designname_lc].witty"
@@ -33,22 +14,20 @@
                async="true"
                />
 
+    <rtddoc rtdtype="http://[domainname]/rtd/document" />
+
     <sitelanguage lang="[defaultlanguage]" />
 
     <republish folder="/" indexonly="false" recursive="true" />
 
     <disablelegacysitesettings notemplateprofile="true" />
 
+    <!-- To enable recaptcha, add: usecaptcha="1" -->
     <formintegration />
 
     <baseproperties keywords="false" description="false" />
     <robots xmlns="http://www.webhare.net/xmlns/consilio"/>
     <seotab xmlns="http://www.webhare.net/xmlns/socialite" features="robots" />
-
-    <!--
-    <analytics xmlns="http://www.webhare.net/xmlns/socialite" type="universal" code="UA-XXXXXXX-X" />
-    <analytics xmlns="http://www.webhare.net/xmlns/socialite" type="tagmanager" code="GTM-XXXXXXX" />
-    -->
 
     <!-- Treat Word document as downloadable -->
     <uploadtypemapping filenamemask="*.doc*" filetype="http://www.webhare.net/xmlns/publisher/msworddownload" mimetypemask="application/msword" />
@@ -64,6 +43,14 @@
 
     <!-- Disable default photoalbum because it's rather old -->
     <denyfoldertype typedef="http://www.webhare.net/xmlns/publisher/photoalbum" />
+  </apply>
+
+  <apply minservertype="production">
+    <to type="all" />
+    <!--
+    <googleanalytics account="UA-XXXXXXX-X" />
+    <gtm account="GTM-XXXXXX" />
+    -->
   </apply>
 
   <!-- ***********************************************************************
@@ -101,5 +88,6 @@
 
   *********************************************************************** -->
   <applysiteprofile fullpath="pages/home/home.siteprl" />
+  <applysiteprofile path="shared/rtd/rtd.siteprl" />
 
 </siteprofile>

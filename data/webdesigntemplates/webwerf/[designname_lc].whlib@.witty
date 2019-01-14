@@ -19,7 +19,10 @@ PUBLIC OBJECTTYPE [designobjectname] EXTEND WebDesignBase
     this->pagetitle := pagesettings.seotitle ?? this->pagetitle;
     this->pagedescription := pagesettings.seodescription ?? this->pagedescription;
 
-    RETURN [[ ogimageurl := this->GetAbsUrl(this->designrooturl || 'img/fbshare.png') ];
+    RETURN
+        CELL[[ pagesettings
+            , ogimageurl := this->GetAbsUrl(this->designrooturl || 'img/fbshare.png')
+            ];
   }
 
   PUBLIC STRING FUNCTION GetImageCSS(RECORD image, RECORD imagesettings)
