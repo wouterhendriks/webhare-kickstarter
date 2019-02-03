@@ -1,19 +1,17 @@
 <?wh
 LOADLIB "wh::witty.whlib";
+
 LOADLIB "mod::publisher/lib/publisher.whlib";
 LOADLIB "mod::publisher/lib/webdesign.whlib";
 
 PUBLIC OBJECTTYPE HomePage EXTEND StaticPageBase
 <
-  RECORD wittydata;
-
-  UPDATE PUBLIC MACRO PrepareForRendering(OBJECT webdesign)
+  UPDATE PUBLIC MACRO PTR FUNCTION GetPageBody(OBJECT webdesign)
   {
     INSERT "page-home" INTO webdesign->htmlclasses AT END;
-  }
 
-  UPDATE PUBLIC MACRO RunBody(OBJECT webdesign)
-  {
-    LoadWittyLibrary(Resolve("home.witty"), "HTML-NI")->Run(this->wittydata);
+    RECORD wittydata;
+
+    RETURN PTR LoadWittyLibrary(Resolve("home.witty"), "HTML-NI")->Run(wittydata);
   }
 >;
