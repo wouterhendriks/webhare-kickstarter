@@ -6,11 +6,12 @@
     <description>REPLACEtitleREPLACE</description>
     <author>Webwerf</author>
     <packaging download="true">
+      <dependency module="webwerf_sites" repository="https://gitlab+deploy-token-23827:oMyGEMupJ6uV4RqFesge@gitlab.com/webwerf/webwerf_sites.git" />
     </packaging>
   </meta>
 
   <publisher>
-    <webdesign name="webwerf" title="Blank NC webdesign" siteprofile="[designname_lc].siteprl" istemplate="true" path="data/webdesigntemplates/webwerf"></webdesign>
+    <webdesign name="webwerf" title="Blank NC webdesign" siteprofile="webdesigns/[designname_lc]/[designname_lc].siteprl" istemplate="true" path="data/webdesigntemplates/webwerf"></webdesign>
   </publisher>
 
 </module>

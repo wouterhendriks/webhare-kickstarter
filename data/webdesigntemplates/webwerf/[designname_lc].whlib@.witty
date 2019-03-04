@@ -4,14 +4,21 @@
 do not add a newline between comment close and the <?wh tag !]<?wh
 LOADLIB "wh::datetime.whlib";
 LOADLIB "wh::witty.whlib";
+
 LOADLIB "mod::publisher/lib/webdesign.whlib";
 LOADLIB "mod::system/lib/cache.whlib";
 LOADLIB "mod::system/lib/configure.whlib";
 
+LOADLIB "mod::webwerf_sites/lib/siteapi.whlib";
+
 PUBLIC OBJECTTYPE [designobjectname] EXTEND WebDesignBase
 <
+  PUBLIC OBJECT siteapi;
+
   UPDATE PUBLIC RECORD FUNCTION GetPageConfig()
   {
+    this->siteapi := GetSiteAPI(this);
+
     IF (GetDTAPStage() != "production")
       this->assetcachebuster := ToString(GetUnixTimestamp(GetCurrentDateTime()));
 
@@ -22,6 +29,7 @@ PUBLIC OBJECTTYPE [designobjectname] EXTEND WebDesignBase
     RETURN
         CELL[[ pagesettings
             , ogimageurl := this->GetAbsUrl(this->designrooturl || 'img/fbshare.png')
+            , menu := this->GetMenu()
             ];
   }
 
@@ -44,5 +52,14 @@ PUBLIC OBJECTTYPE [designobjectname] EXTEND WebDesignBase
       EmbedWittyComponent("404", DEFAULT RECORD);
     ELSE
       WebDesignBase::PrintErrorPage(errorcode, harescriptinfo, url);
+  }
+
+  RECORD ARRAY FUNCTION GetMenu()
+  {
+    OBJECT menuapi := GetSiteMenuAPI(this);
+    menuapi->addhome := FALSE;
+    menuapi->max_depth := 3;
+    //menuapi->skiprootfiles := FALSE;
+    RETURN menuapi->Generate();
   }
 >;

@@ -23,7 +23,7 @@
 @mixin link-no-underline {
   text-decoration: none;
 
-  &:hover {
+  @include hover {
     text-decoration: underline;
   }
 }
@@ -52,14 +52,14 @@
   @return $width;
 }
 
-@mixin bp-grid-cols($nrcols, $addgutter: false, $max-width: false, $add-margin-auto: true, $add-padding-smaller-screen: true) {
+@mixin bp-grid-cols($nrcols, $addgutter: false, $max-width: true, $add-margin-auto: true, $add-padding-smaller-screen: true) {
   @if ($add-margin-auto == true) {
     margin: 0 auto;
   }
 
   @if ($max-width == true) {
-    width: 100%;
-    max-width: get-width-by-grid-cols($nrcols);
+    width: get-width-by-grid-cols($nrcols);
+    max-width: 100vw;
   } @else {
     width: get-width-by-grid-cols($nrcols);
   }
@@ -74,14 +74,9 @@
   }
 }
 
-@mixin textinputfields() {
-  input[type="text"],
-  input[type="email"],
-  input[type="url"],
-  input[type="date"],
-  input[type="search"],
-  input[type="number"],
-  textarea {
-    @content;
-  }
+@mixin placeholder {
+  &::-webkit-input-placeholder { @content }
+  &:-moz-placeholder { @content }
+  &::-moz-placeholder { @content }
+  &:-ms-input-placeholder { @content }
 }
