@@ -20,7 +20,7 @@ import './header/header';
 // pages
 import './pages/home/home';
 
-let touchsupport = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0)
+let touchsupport = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0);
 if (!touchsupport){ // browser doesn't support touch
   document.documentElement.className += ' non-touch';
 }
