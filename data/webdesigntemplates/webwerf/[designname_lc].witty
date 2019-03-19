@@ -12,9 +12,13 @@
 [/component]
 
 [component htmlbody]
+  [embed header/header.witty:header]
   <main>
+    <!--wh_consilio_content-->
     [contents]
+    <!--/wh_consilio_content-->
   </main>
+  [embed footer/footer.witty:footer]
 [/component]
 
 [component 404]

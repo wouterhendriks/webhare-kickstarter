@@ -13,6 +13,10 @@ import './[designname_lc].scss';
 import { openLinksInNewWindow } from '@mod-publisher/js/linkhandler';
 openLinksInNewWindow();
 
+// components
+import './footer/footer';
+import './header/header';
+
 // pages
 import './pages/home/home';
 
