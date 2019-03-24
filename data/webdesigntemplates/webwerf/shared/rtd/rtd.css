@@ -28,7 +28,8 @@ h4 {
   margin: 0 0 10px;
 }
 
-p {
+p,
+.wh-rtd-embeddedobject {
   font-size: 14px;
   line-height: 120%;
   margin: 0 0 10px;

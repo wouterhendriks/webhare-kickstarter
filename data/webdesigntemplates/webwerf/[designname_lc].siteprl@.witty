@@ -89,6 +89,7 @@
        Load pages and components
 
   *********************************************************************** -->
+  <applysiteprofile fullpath="embeddedobjects/embeddedobjects.siteprl" />
   <applysiteprofile fullpath="pages/home/home.siteprl" />
   <applysiteprofile path="shared/rtd/rtd.siteprl" />
 
