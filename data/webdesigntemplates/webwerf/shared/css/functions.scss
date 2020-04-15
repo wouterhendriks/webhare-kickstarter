@@ -59,7 +59,7 @@
 
   @if ($max-width == true) {
     width: get-width-by-grid-cols($nrcols);
-    max-width: 100vw;
+    max-width: 100%;
   } @else {
     width: get-width-by-grid-cols($nrcols);
   }
