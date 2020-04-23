@@ -11,7 +11,7 @@
   </meta>
 
   <publisher>
-    <webdesign name="webwerf" title="Blank NC webdesign" siteprofile="webdesigns/[designname_lc]/[designname_lc].siteprl" istemplate="true" path="data/webdesigntemplates/webwerf"></webdesign>
+    <webdesign name="webwerf" title="Blank NC webdesign" siteprofile="webdesigns/[designname_lc]/[designname_lc].siteprl.xml" istemplate="true" path="data/webdesigntemplates/webwerf"></webdesign>
   </publisher>
 
 </module>

@@ -79,7 +79,7 @@ IF (defaultoutputserverid > 0)
   newsite->SetPrimaryOutput(defaultoutputserverid, "/" || GetSafeFileName(name) || "/");
 
 // update home siteprl URL
-//STRING home_siteprl_path := args.projectdir || "webdesigns/" || name || "/pages/home/home.siteprl";
+//STRING home_siteprl_path := args.projectdir || "webdesigns/" || name || "/pages/home/home.siteprl.xml";
 //INTEGER infile := OpenDiskFile(home_siteprl_path, FALSE);
 
 //STRING home_siteprl := ReadFromFile(infile, 1024*1024);

@@ -8,6 +8,6 @@
        Apply siteprofiles
 
   ***********************************************************************  -->
-  <!-- <applysiteprofile fullpath="type/type.siteprl" /> -->
+  <!-- <applysiteprofile fullpath="type/type.siteprl.xml" /> -->
 
 </siteprofile>
