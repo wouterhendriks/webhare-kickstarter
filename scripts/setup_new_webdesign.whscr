@@ -9,7 +9,8 @@ LOADLIB "module::publisher/siteapi.whlib";
 LOADLIB "module::system/database.whlib";
 LOADLIB "module::system/whfs.whlib";
 LOADLIB "module::system/internal/resources.whlib";
-LOADLIB "module::system/internal/devtools/support.whlib";
+LOADLIB "mod::system/lib/internal/modules/support.whlib";
+
 
 OBJECT trans := OpenPrimary();
 trans->BeginWork();
