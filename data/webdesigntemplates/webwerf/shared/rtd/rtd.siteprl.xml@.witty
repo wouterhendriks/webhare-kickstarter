@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <siteprofile xmlns="http://www.webhare.net/xmlns/publisher/siteprofile">
 
-  <rtdtype namespace="http://[domainname]/rtd/document" allownewwindowlinks="false">
+  <rtdtype namespace="http://[domainname]/rtd/document" allownewwindowlinks="true">
     <css path="rtd.css" />
 
     <blockstyles defaultstyle="NORMAL">
