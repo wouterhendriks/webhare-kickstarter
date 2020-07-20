@@ -1,3 +1,5 @@
+@import './vars';
+
 @mixin font-size($size-value, $line: null, $apply-mobile-factor: false) {
   font-size: $size-value + px;
 
@@ -65,12 +67,11 @@
   }
 
   @media screen and (max-width: get-width-by-grid-cols($nrcols)) {
-    @content;
-
     @if ($add-padding-smaller-screen == true) {
       padding-left: 25px;
       padding-right: 25px;
     }
+    @content;
   }
 }
 

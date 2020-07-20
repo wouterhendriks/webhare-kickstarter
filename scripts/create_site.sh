@@ -146,13 +146,7 @@ function replacereadme()
 \`\`\`
 #!bash
 # Clone the repo and save as '${FOLDER_NAME}'
-git clone git@gitlab.com:webwerf/xxxxxxxxxxxxx.git "\$(wh getdatadir)installedmodules/${FOLDER_NAME}"
-
-# Make sure WebHare knows about this module
-wh softreset
-
-# Satisfy the module dependencies
-wh fixmodules ${FOLDER_NAME}
+wh module get git@gitlab.com:webwerf/xxxxxxxxxxxxx.git
 \`\`\`
 EOF
 }

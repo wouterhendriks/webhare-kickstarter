@@ -1,3 +1,13 @@
-@import 'shared/css/vars';
 @import 'shared/css/functions';
 @import 'shared/css/typography';
+
+// force footer to bottom
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+
+  > main {
+    flex: 1;
+  }
+}

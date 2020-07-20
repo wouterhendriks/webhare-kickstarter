@@ -52,17 +52,30 @@ hr {
 
 .wh-rtd-editor {
   font-family: Arial, Sans-Serif;
-  padding: 3px;
+  padding: 7px 3px 3px;
 }
 
 .wh-rtd-editor .embeddedobject {
   padding: 15px 15px 30px;
 }
 
-.wh-rtd-editor .embeddedobject__type {
+.wh-rtd-editor .widget__type {
   position: absolute;
   bottom: 10px;
   right: 6px;
   font-size: 140%;
   font-style: italic;
+}
+
+/* hide widget type when having a widget in a widget */
+.wh-rtd-editor .wh-rtd-embeddedobject .wh-rtd-embeddedobject .widget__type {
+  display: none;
+}
+
+.wh-rtd-embeddedobject {
+  padding: 10px;
+}
+
+.wh-rtd-embeddedobject__preview {
+  padding-bottom: 40px !important;
 }
