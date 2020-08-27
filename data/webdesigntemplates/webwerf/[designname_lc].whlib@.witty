@@ -11,39 +11,28 @@ LOADLIB "mod::system/lib/configure.whlib";
 
 LOADLIB "mod::webwerf_sites/lib/siteapi.whlib";
 
-PUBLIC OBJECTTYPE [designobjectname] EXTEND WebDesignBase
+PUBLIC OBJECTTYPE [designobjectname] EXTEND WebwerfWebDesignBase
 <
   PUBLIC OBJECT siteapi;
 
   UPDATE PUBLIC RECORD FUNCTION GetPageConfig()
   {
-    this->siteapi := GetSiteAPI(this);
-
-    IF (GetDTAPStage() != "production")
-      this->assetcachebuster := ToString(GetUnixTimestamp(GetCurrentDateTime()));
+    RECORD pageconfig := WebwerfWebDesignBase::GetPageConfig();
 
     RECORD pagesettings := this->targetobject->GetInstanceData("http://[domainname]/pagesettings");
     this->pagetitle := pagesettings.seotitle ?? this->pagetitle;
     this->pagedescription := pagesettings.seodescription ?? this->pagedescription;
 
+    // RECORD ARRAY menu :=
+    //     SELECT *
+    //          , selected := id IN this->targetobject->GetFullTree()
+    //       FROM this->siteconfig.menu;
+
     RETURN
-        CELL[[ pagesettings
-            , ogimageurl := this->GetAbsUrl(this->designrooturl || 'img/fbshare.png')
-            , menu := this->GetMenu()
+        CELL[ ...pageconfig
+            , ...this->siteconfig
+            // , menu := this->GetMenu()
             ];
-  }
-
-  PUBLIC STRING FUNCTION GetImageCSS(RECORD image, RECORD imagesettings)
-  {
-    IF (NOT RecordExists(image))
-      RETURN "";
-
-    RECORD wrapped := WrapCachedImage(image, imagesettings);
-
-    RETURN `background-size: cover;
-            background-image: url(${wrapped.link});
-            background-position: ${wrapped.refpoint_backgroundposition ?? 'center'};
-            background-color: ${wrapped.dominantcolor}`;
   }
 
   UPDATE PUBLIC MACRO PrintErrorPage(INTEGER errorcode, RECORD harescriptinfo, STRING url)
@@ -54,12 +43,20 @@ PUBLIC OBJECTTYPE [designobjectname] EXTEND WebDesignBase
       WebDesignBase::PrintErrorPage(errorcode, harescriptinfo, url);
   }
 
-  RECORD ARRAY FUNCTION GetMenu()
+  UPDATE RECORD FUNCTION GetCacheableSiteConfig()
   {
+    // RECORD pages := [ contact := this->targetsite->OpenByPath("/contact/", [ expect := "file" ])->link
+    //                 ];
+
+    RECORD ARRAY vacancies := this->api->GetVacancies([ outputcolumns := ["WRD_ID"]]);
+
     OBJECT menuapi := GetSiteMenuAPI(this);
     menuapi->addhome := FALSE;
     menuapi->max_depth := 3;
     //menuapi->skiprootfiles := FALSE;
-    RETURN menuapi->Generate();
+
+    RETURN CELL[ menu := menuapi->Generate()
+               // , ogimageurl := this->GetAbsUrl(this->designrooturl || 'img/fbshare.png')
+               ];
   }
 >;

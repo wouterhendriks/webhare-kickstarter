@@ -3,7 +3,7 @@
              xmlns:p="http://www.webhare.net/xmlns/publisher/components"
              >
 
-  <apply>
+  <apply priority="10">
     <to type="all" />
 
     <webdesign designfolder="."
@@ -22,29 +22,7 @@
 
     <republish folder="/" indexonly="false" recursive="true" />
 
-    <disablelegacysitesettings notemplateprofile="true" />
-
-    <!-- To enable recaptcha, add: usecaptcha="1" -->
     <formintegration />
-
-    <baseproperties keywords="false" description="false" />
-    <robots xmlns="http://www.webhare.net/xmlns/consilio"/>
-    <seotab xmlns="http://www.webhare.net/xmlns/socialite" features="robots" />
-
-    <!-- Treat Word document as downloadable -->
-    <uploadtypemapping filenamemask="*.doc*" filetype="http://www.webhare.net/xmlns/publisher/msworddownload" mimetypemask="application/msword" />
-    <uploadtypemapping filenamemask="*.doc*" filetype="http://www.webhare.net/xmlns/publisher/msworddownload" mimetypemask="application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
-
-    <denyfiletype typedef="*" />
-    <allowfiletype typedef="http://www.webhare.net/xmlns/publisher/imagefile" />
-    <allowfiletype typedef="http://www.webhare.net/xmlns/publisher/pdffile" />
-    <allowfiletype typedef="http://www.webhare.net/xmlns/publisher/externallink" />
-    <allowfiletype typedef="http://www.webhare.net/xmlns/publisher/internallink" />
-    <allowfiletype typedef="http://www.webhare.net/xmlns/publisher/richdocumentfile" />
-    <allowfiletype typedef="http://www.webhare.net/xmlns/publisher/formwebtool" />
-
-    <!-- Disable default photoalbum because it's rather old -->
-    <denyfoldertype typedef="http://www.webhare.net/xmlns/publisher/photoalbum" />
   </apply>
 
   <apply minservertype="production">
@@ -57,40 +35,14 @@
 
   <!-- ***********************************************************************
 
-       Page settings
-
-  *********************************************************************** -->
-  <contenttype namespace="http://[domainname]/pagesettings">
-    <member name="seotitle" type="string" />
-    <member name="seodescription" type="string" />
-  </contenttype>
-
-  <tabsextension name="pagesettings" xmlns="http://www.webhare.net/xmlns/tollium/screens">
-    <newtab title="SEO">
-      <heading title="Titel" />
-      <panel layout="left">
-        <text title="" value="Standaard wordt voor de pagina-titel de titel van het bestand gebruikt, deze kan hier optioneel overschreven worden." wordwrap="true" />
-        <textedit composition="contentdata" cellname="seotitle" title="" errorlabel="Titel" width="1pr" />
-      </panel>
-      <heading title="Omschrijving" />
-      <panel layout="left">
-        <textarea composition="contentdata" cellname="seodescription" title="" errorlabel="Omschrijving" width="1pr" height="3x" maxlength="160" showcounter="true" />
-      </panel>
-    </newtab>
-  </tabsextension>
-
-  <apply>
-    <to type="file" typeneedstemplate="true" />
-    <extendproperties extension=".pagesettings" contenttype="http://[domainname]/pagesettings" />
-  </apply>
-
-  <!-- ***********************************************************************
-
        Load pages and components
 
   *********************************************************************** -->
-  <applysiteprofile path="embeddedobjects/embeddedobjects.siteprl.xml" />
-  <applysiteprofile path="pages/home/home.siteprl.xml" />
+  <applysiteprofile path="widgets/widgets.siteprl.xml" />
   <applysiteprofile path="shared/rtd/rtd.siteprl.xml" />
+
+  <applysiteprofile path="mod::webwerf_sites/siteprl/site.siteprl.xml" />
+  <applysiteprofile path="mod::webwerf_sites/siteprl/seo/seo.siteprl.xml" />
+  <applysiteprofile path="mod::webwerf_sites/siteprl/shareimages/shareimages.siteprl.xml" />
 
 </siteprofile>

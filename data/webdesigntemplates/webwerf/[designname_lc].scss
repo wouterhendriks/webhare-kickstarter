@@ -1,6 +1,8 @@
 @import 'shared/css/functions';
 @import 'shared/css/typography';
 
+@import 'shared/bem/button';
+
 // force footer to bottom
 body {
   display: flex;

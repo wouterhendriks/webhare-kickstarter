@@ -30,14 +30,8 @@
   }
 }
 
-@mixin mw($maxwidth) {
-  @media screen and (max-width: $maxwidth + px) {
-    @content;
-  }
-}
-
 @mixin hover {
-  html.non-touch & {
+  @media (hover: hover) {
     &:hover {
       @content;
     }

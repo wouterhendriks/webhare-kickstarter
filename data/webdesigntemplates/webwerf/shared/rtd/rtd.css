@@ -35,6 +35,14 @@ p,
   margin: 0 0 10px;
 }
 
+ul {
+  padding-left: 1.3em;
+}
+
+ol {
+  padding-left: 1em;
+}
+
 a {
   color: #003366;
   text-decoration: underline;
@@ -55,7 +63,7 @@ hr {
   padding: 7px 3px 3px;
 }
 
-.wh-rtd-editor .embeddedobject {
+.wh-rtd-editor .widget {
   padding: 15px 15px 30px;
 }
 
@@ -68,7 +76,7 @@ hr {
 }
 
 /* hide widget type when having a widget in a widget */
-.wh-rtd-editor .wh-rtd-embeddedobject .wh-rtd-embeddedobject .widget__type {
+.wh-rtd-embeddedobject .wh-rtd-embeddedobject {
   display: none;
 }
 

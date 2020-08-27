@@ -71,38 +71,18 @@ RECORD sitesettings := sitesettingstype->GetInstanceData(newsite->root);
 sitesettingstype->SetInstanceData(newsite->id, [ sitedesign := module || ":" || name ]);
 
 // find localhost:8001 webserver and assign this site
-INTEGER defaultoutputserverid := SELECT AS INTEGER id
-                                   FROM system.webservers
-                                  WHERE ToUpperCase(baseurl) = 'HTTP://LOCALHOST:8001/';
-
-IF (defaultoutputserverid > 0)
+INTEGER defaultoutputserverid := SELECT AS INTEGER id FROM system.webservers WHERE ToUpperCase(baseurl) = 'HTTP://LOCALHOST:8001/';
+IF (defaultoutputserverid != 0)
   newsite->SetPrimaryOutput(defaultoutputserverid, "/" || GetSafeFileName(name) || "/");
 
-// update home siteprl URL
-//STRING home_siteprl_path := args.projectdir || "webdesigns/" || name || "/pages/home/home.siteprl.xml";
-//INTEGER infile := OpenDiskFile(home_siteprl_path, FALSE);
+// create an RTD home page
+OBJECT rtd := newsite->rootobject->CreateFile([ name := "home.rtd"
+                                              , title := "Home"
+                                              , type := OpenWHFSType("http://www.webhare.net/xmlns/publisher/richdocumentfile")
+                                              , publish := TRUE
+                                              ]);
 
-//STRING home_siteprl := ReadFromFile(infile, 1024*1024);
-
-//CloseDiskFile(infile);
-
-//home_siteprl := Substitute(home_siteprl, "www.example.com", domain_name);
-
-//IF (NOT CreateDiskFileFromBlob(home_siteprl_path, FALSE, TRUE, StringToBlob(home_siteprl)))
-//  THROW NEW Exception("I/O error updating home site profile");
-
-// recompile site profiles
-RecompileSiteProfiles(); //FIXME: doesn't seem to work, homepagetype is not available
-
-// create an index home page
-OBJECT homepagetype := OpenWHFSType('http://' || domain_name || "/filetype/home");
-OBJECT homepage := newsite->rootobject->CreateFile([ name := "index.html"
-                                                   , title := "Homepage"
-                                                   , type := ObjectExists(homepagetype) ? homepagetype->id : 5
-                                                   , publish := TRUE
-                                                   ]);
-
-newsite->rootobject->UpdateMetaData([ indexdoc := homepage->id ]);
+newsite->rootobject->UpdateMetaData([ indexdoc := rtd->id ]);
 
 RECORD ARRAY errors := trans->CommitWork();
 
@@ -114,8 +94,8 @@ Print("\n## ----------------------- Result ----------------------- ##\n\n"
    || "\n"
    || "Module name (converted from title):\n" || name || "\n"
    || "\n"
-   || "Assuming a default install, direct URL to the site in the Publisher:\n"
-   || "http://localhost:8000/?app=publisher(" || newsite->name || ")\n"
+   || "Direct URL to the site in the Publisher:\n"
+   || "http://my.webhare.dev/?app=publisher(" || newsite->name || ")\n"
    || "\n"
    || "Output URL:\n"
    || newsite->webroot || "\n"
