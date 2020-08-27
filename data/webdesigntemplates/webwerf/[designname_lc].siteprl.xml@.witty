@@ -1,27 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<siteprofile xmlns="http://www.webhare.net/xmlns/publisher/siteprofile"
-             xmlns:p="http://www.webhare.net/xmlns/publisher/components"
-             >
+<siteprofile xmlns="http://www.webhare.net/xmlns/publisher/siteprofile">
 
-  <apply priority="10">
+  <apply>
     <to type="all" />
-
     <webdesign designfolder="."
                witty="[designname_lc].witty"
                library="[designname_lc].whlib"
                objectname="[designobjectname]"
                assetpack="[designname_lc]:[designname_lc]"
-               maxcontentwidth="960px"
-               wittyencoding="HTML-NI"
-               async="true"
                />
-
     <rtddoc rtdtype="http://[domainname]/rtd/document" />
-
     <sitelanguage lang="[defaultlanguage]" />
-
     <republish folder="/" indexonly="false" recursive="true" />
-
     <formintegration />
   </apply>
 

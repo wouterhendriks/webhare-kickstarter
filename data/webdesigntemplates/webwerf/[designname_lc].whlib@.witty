@@ -2,19 +2,11 @@
    final library file must be double escaped: [[ (but not ]])
 
 do not add a newline between comment close and the <?wh tag !]<?wh
-LOADLIB "wh::datetime.whlib";
-LOADLIB "wh::witty.whlib";
-
-LOADLIB "mod::publisher/lib/webdesign.whlib";
-LOADLIB "mod::system/lib/cache.whlib";
-LOADLIB "mod::system/lib/configure.whlib";
 
 LOADLIB "mod::webwerf_sites/lib/siteapi.whlib";
 
 PUBLIC OBJECTTYPE [designobjectname] EXTEND WebwerfWebDesignBase
 <
-  PUBLIC OBJECT siteapi;
-
   UPDATE PUBLIC RECORD FUNCTION GetPageConfig()
   {
     RECORD pageconfig := WebwerfWebDesignBase::GetPageConfig();
@@ -33,14 +25,6 @@ PUBLIC OBJECTTYPE [designobjectname] EXTEND WebwerfWebDesignBase
             , ...this->siteconfig
             // , menu
             ];
-  }
-
-  UPDATE PUBLIC MACRO PrintErrorPage(INTEGER errorcode, RECORD harescriptinfo, STRING url)
-  {
-    IF (errorcode = 404)
-      EmbedWittyComponent("404", DEFAULT RECORD);
-    ELSE
-      WebDesignBase::PrintErrorPage(errorcode, harescriptinfo, url);
   }
 
   UPDATE RECORD FUNCTION GetCacheableSiteConfig()
