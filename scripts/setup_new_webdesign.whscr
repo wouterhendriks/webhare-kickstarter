@@ -78,7 +78,7 @@ IF (defaultoutputserverid != 0)
 // create an RTD home page
 OBJECT rtd := newsite->rootobject->CreateFile([ name := "home.rtd"
                                               , title := "Home"
-                                              , type := OpenWHFSType("http://www.webhare.net/xmlns/publisher/richdocumentfile")
+                                              , type := OpenWHFSType("http://www.webhare.net/xmlns/publisher/richdocumentfile")->id
                                               , publish := TRUE
                                               ]);
 
