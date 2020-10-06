@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <siteprofile xmlns="http://www.webhare.net/xmlns/publisher/siteprofile">
 
-  <apply>
+  <apply priority="10">
     <to type="all" />
     <webdesign designfolder="."
                witty="[designname_lc].witty"
                library="[designname_lc].whlib"
                objectname="[designobjectname]"
-               assetpack="[designname_lc]:[designname_lc]"
-               />
+               assetpack="[designname_lc]:[designname_lc]" />
     <rtddoc rtdtype="http://[domainname]/rtd/document" />
     <sitelanguage lang="[defaultlanguage]" />
     <republish folder="/" indexonly="false" recursive="true" />
@@ -34,5 +33,24 @@
   <applysiteprofile path="mod::webwerf_sites/siteprl/site.siteprl.xml" />
   <applysiteprofile path="mod::webwerf_sites/siteprl/seo/seo.siteprl.xml" />
   <applysiteprofile path="mod::webwerf_sites/siteprl/shareimages/shareimages.siteprl.xml" />
+
+  <!-- ***********************************************************************
+
+       Security
+
+  ***********************************************************************
+  <sitesettings>
+    <webruleset xmlns="http://www.webhare.net/xmlns/system/moduledefinition">
+      <webrule path="/" match="initial">
+        <addheader header="X-Frame-Options" value="DENY"/>
+        <addheader header="X-XSS-Protection" value="1; mode=block"/>
+        <addheader header="X-Content-Type-Options" value="nosniff"/>
+        <addheader header="Referrer-Policy" value="strict-origin-when-cross-origin"/>
+        <addheader header="Feature-Policy" value="geolocation 'none'; camera 'none'; payment 'none'; microphone 'none'; "/>
+        <csp policy="script-src 'self'; frame-ancestors 'self' [[webhare]; report-uri https://reports.webhare.com/csp/;"/>
+      </webrule>
+    </webruleset>
+  </sitesettings>
+  -->
 
 </siteprofile>

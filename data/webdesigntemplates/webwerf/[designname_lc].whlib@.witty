@@ -11,10 +11,6 @@ PUBLIC OBJECTTYPE [designobjectname] EXTEND WebwerfWebDesignBase
   {
     RECORD pageconfig := WebwerfWebDesignBase::GetPageConfig();
 
-    RECORD pagesettings := this->targetobject->GetInstanceData("http://[domainname]/pagesettings");
-    this->pagetitle := pagesettings.seotitle ?? this->pagetitle;
-    this->pagedescription := pagesettings.seodescription ?? this->pagedescription;
-
     // RECORD ARRAY menu :=
     //     SELECT *
     //          , selected := id IN this->targetobject->GetFullTree()

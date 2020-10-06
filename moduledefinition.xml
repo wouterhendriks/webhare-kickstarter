@@ -5,13 +5,13 @@
     <version>1.0.0</version>
     <description>REPLACEtitleREPLACE</description>
     <author>Webwerf</author>
-    <packaging download="true">
-      <dependency module="webwerf_sites" repository="https://github.com/wouterhendriks/webwerf_sites.git" />
+    <packaging download="true" webhareversion=">= 4.28.0-dev">
+      <dependency module="webwerf_sites" repository="https://gitlab.com/wouterhendriks/webwerf_sites.git" />
     </packaging>
   </meta>
 
   <publisher>
-    <webdesign name="webwerf" title="Blank NC webdesign" siteprofile="webdesigns/[designname_lc]/[designname_lc].siteprl.xml" istemplate="true" path="data/webdesigntemplates/webwerf"></webdesign>
+    <webdesign name="webwerf" title="Webdesign" siteprofile="webdesigns/[designname_lc]/[designname_lc].siteprl.xml" istemplate="true" path="data/webdesigntemplates/webwerf"></webdesign>
   </publisher>
 
 </module>
