@@ -6,7 +6,7 @@
     <description>REPLACEtitleREPLACE</description>
     <author>Webwerf</author>
     <packaging download="true" webhareversion=">= 4.28.0-dev">
-      <dependency module="webwerf_sites" repository="https://gitlab.com/wouterhendriks/webwerf_sites.git" />
+      <dependency module="webwerf_sites" repository="https://gitlab.com/webwerf/webwerf_sites.git" />
     </packaging>
   </meta>
 
