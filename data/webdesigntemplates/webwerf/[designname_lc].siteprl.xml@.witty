@@ -1,25 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <siteprofile xmlns="http://www.webhare.net/xmlns/publisher/siteprofile">
 
-  <apply priority="10">
+  <apply>
     <to type="all" />
-    <webdesign designfolder="."
-               witty="[designname_lc].witty"
+    <webdesign assetpack="[designname_lc]:[designname_lc]"
+               designfolder="."
                library="[designname_lc].whlib"
                objectname="[designobjectname]"
-               assetpack="[designname_lc]:[designname_lc]" />
-    <rtddoc rtdtype="http://[domainname]/rtd/document" />
-    <sitelanguage lang="[defaultlanguage]" />
-    <republish folder="/" indexonly="false" recursive="true" />
-    <formintegration />
-  </apply>
-
-  <apply minservertype="production">
-    <to type="all" />
-    <!--
-    <googleanalytics account="UA-XXXXXXX-X" />
-    <gtm account="GTM-XXXXXX" />
-    -->
+               witty="[designname_lc].witty" />
   </apply>
 
   <!-- ***********************************************************************
@@ -28,11 +16,7 @@
 
   *********************************************************************** -->
   <applysiteprofile path="widgets/widgets.siteprl.xml" />
-  <applysiteprofile path="shared/rtd/rtd.siteprl.xml" />
-
-  <applysiteprofile path="mod::webwerf_sites/siteprl/site.siteprl.xml" />
-  <applysiteprofile path="mod::webwerf_sites/siteprl/seo/seo.siteprl.xml" />
-  <applysiteprofile path="mod::webwerf_sites/siteprl/shareimages/shareimages.siteprl.xml" />
+  <applysiteprofile path="mod::ww/webdesigns/template/ww.siteprl.xml" />
 
   <!-- ***********************************************************************
 

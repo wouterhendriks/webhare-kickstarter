@@ -1,17 +1,17 @@
 [! Careful here, any subscript operators that should still be present in the
    final javascript file must be double escaped: [[ (but not ]])
 
-!]import * as dompack from 'dompack';
-import '@mod-system/js/wh/integration';
+!]/* Custom template */
+
+import * as dompack from 'dompack';
 import 'dompack/browserfix/reset.css';
-
-import './shared/forms/forms';
-import './shared/rtd/rtd';
-
-import './[designname_lc].scss';
+import '@mod-system/js/wh/integration';
+import '@mod-publisher/js/richcontent/all';
 
 import { openLinksInNewWindow } from '@mod-publisher/js/linkhandler';
 openLinksInNewWindow();
+
+import './[designname_lc].scss';
 
 // components
 import './widgets/widgets';
@@ -23,3 +23,11 @@ import './header/header';
 
 dompack.onDomReady(() => {
 });
+
+/* ww's template
+import { WWBasicSite } from '@mod-ww/webdesigns/template/ww';
+
+dompack.onDomReady(() => {
+  new WWBasicSite({});
+});
+*/

@@ -3,39 +3,24 @@
 
 do not add a newline between comment close and the <?wh tag !]<?wh
 
-LOADLIB "mod::webwerf_sites/lib/siteapi.whlib";
+LOADLIB "mod::ww/webdesigns/template/ww.whlib";
 
-PUBLIC OBJECTTYPE [designobjectname] EXTEND WebwerfWebDesignBase
+PUBLIC OBJECTTYPE [designobjectname] EXTEND WWBaseWebDesignBase
 <
+  MACRO NEW()
+  {
+    this->module_bootstrap := "5.0.2";
+    this->module_fontawesome := "5.15.4";
+    //this->module_jquery := "3.5.1";
+  }
+
   UPDATE PUBLIC RECORD FUNCTION GetPageConfig()
   {
-    RECORD pageconfig := WebwerfWebDesignBase::GetPageConfig();
-
-    // RECORD ARRAY menu :=
-    //     SELECT *
-    //          , selected := id IN this->targetobject->GetFullTree()
-    //       FROM this->siteconfig.menu;
+    RECORD pageconfig := WWBaseWebDesignBase::GetPageConfig();
 
     RETURN
         CELL[[ ...pageconfig
-            , ...this->siteconfig
-            // , menu
+            //, curyear := UnpackDateTime(GetCurrentDateTime()).year
             ];
-  }
-
-  UPDATE RECORD FUNCTION GetCacheableSiteConfig()
-  {
-    // RECORD pages := [[ contact := this->targetsite->OpenByPath("/contact/", [[ expect := "file" ])->link
-    //                 ];
-
-    OBJECT menuapi := GetSiteMenuAPI(this);
-    menuapi->addhome := FALSE;
-    menuapi->max_depth := 3;
-    //menuapi->skiprootfiles := FALSE;
-
-    RETURN CELL[[ menu := menuapi->Generate()
-               // , ogimageurl := this->GetAbsUrl(this->designrooturl || 'img/fbshare.png')
-               // , pages
-               ];
   }
 >;

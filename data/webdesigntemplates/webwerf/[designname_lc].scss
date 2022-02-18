@@ -1,3 +1,12 @@
+/* Enable if you want to use ww's main template
+@import '~@mod-ww/webdesigns/template/css/functions';
+@import '~@mod-ww/webdesigns/template/ww';
+
+:root {
+  --ww-primary-color: #000;
+}
+*/
+
 @import 'shared/css/functions';
 @import 'shared/css/typography';
 

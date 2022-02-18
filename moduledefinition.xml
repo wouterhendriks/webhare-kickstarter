@@ -5,8 +5,8 @@
     <version>1.0.0</version>
     <description>REPLACEtitleREPLACE</description>
     <author>Webwerf</author>
-    <packaging download="true" webhareversion=">= 4.28.0-dev">
-      <dependency module="webwerf_sites" repository="https://gitlab.com/webwerf/webwerf_sites.git" />
+    <packaging download="true">
+      <dependency module="ww" repository="https://gitlab+deploy-token-334128:1ZnqJHyU-nkus1knc4gF@gitlab.com/webwerf/ww.git" />
     </packaging>
   </meta>
 
