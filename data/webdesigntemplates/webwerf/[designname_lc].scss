@@ -1,16 +1,16 @@
 /* Enable if you want to use ww's main template
-@import '~@mod-ww/webdesigns/template/css/functions';
-@import '~@mod-ww/webdesigns/template/ww';
+@use '~@mod-ww/webdesigns/template/css/functions';
+@use '~@mod-ww/webdesigns/template/ww';
 
 :root {
   --ww-primary-color: #000;
 }
 */
 
-@import 'shared/css/functions';
-@import 'shared/css/typography';
+@use 'shared/css/functions';
+@use 'shared/css/typography';
 
-@import 'shared/bem/button';
+@use 'shared/bem/button';
 
 // force footer to bottom
 body {

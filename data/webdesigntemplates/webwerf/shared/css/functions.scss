@@ -1,4 +1,4 @@
-@import './vars';
+@use './vars';
 
 @mixin font-size($size-value, $line: null, $apply-mobile-factor: false) {
   font-size: $size-value + px;
@@ -48,7 +48,13 @@
   @return $width;
 }
 
-@mixin bp-grid-cols($nrcols, $addgutter: false, $max-width: true, $add-margin-auto: true, $add-padding-smaller-screen: true) {
+@mixin bp-grid-cols(
+  $nrcols,
+  $addgutter: false,
+  $max-width: true,
+  $add-margin-auto: true,
+  $add-padding-smaller-screen: true
+) {
   @if ($add-margin-auto == true) {
     margin: 0 auto;
   }
@@ -70,8 +76,16 @@
 }
 
 @mixin placeholder {
-  &::-webkit-input-placeholder { @content }
-  &:-moz-placeholder { @content }
-  &::-moz-placeholder { @content }
-  &:-ms-input-placeholder { @content }
+  &::-webkit-input-placeholder {
+    @content;
+  }
+  &:-moz-placeholder {
+    @content;
+  }
+  &::-moz-placeholder {
+    @content;
+  }
+  &:-ms-input-placeholder {
+    @content;
+  }
 }
