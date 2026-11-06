@@ -7,6 +7,7 @@
     <author>Webwerf</author>
     <packaging download="true">
       <dependency module="ww" repository="https://gitlab+deploy-token-334128:1ZnqJHyU-nkus1knc4gF@gitlab.com/webwerf/ww.git" />
+      <excludepath mask=".claude" />
     </packaging>
   </meta>
 
